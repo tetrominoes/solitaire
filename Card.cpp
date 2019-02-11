@@ -32,9 +32,6 @@ class Card{
     void setCardValue(int cardValue){
         this->cardValue = cardValue;
     }
-
-
-
 };
 
 int main(){
