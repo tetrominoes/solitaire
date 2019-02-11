@@ -3,8 +3,10 @@
 import os
 
 
-itemName = input('type name of file')
+
+itemName = input('type name of file\n')
 
 os.system("g++ -o " + itemName + " " + itemName + ".cpp")
 print('compiled')
 os.system("./" + itemName)
+   
