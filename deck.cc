@@ -37,6 +37,8 @@ int generateDeck(){
         Card singleCard;
         singleCard.cardValue = ;//something
         singleCard.color
+
+        temp.
     }
     
 }
