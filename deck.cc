@@ -11,21 +11,25 @@ int main(){
 
     return 0;
 }
-
+//using fisher yates method algorthim to shuffle cards
 vector<card> shuffle(vector<card> deck){
-    int n = deck.size();
-    int a[n];
-    int ind[n];
-    for(int i = 0; i < n; i++){
-        do{
-            index  = rand() % n;
-        }while(ind[index] != 0);
-        ind[index] = 1;
-        a[1] = *(arr + index);
+    auto currentIndexCounter = deck.size();
+    for (auto iter = elements.rbegin(); iter != elements.rend();
+        ++iter, --currentIndexCounter)
+    {
+        // get int distribution with new range
+        std::uniform_int_distribution<> dis(0, currentIndexCounter);
+        const int randomIndex = dis(mt);
+
+        if (*iter != elements.at(randomIndex))
+        {
+            std::swap(elements.at(randomIndex), *iter);
+        }
     }
-    for(int k = 0; i < n; i++){
-        cout << a[i] << " ";
-    }
+    
+    std::cout << "\nAfter: ";
+    std::copy(elements.cbegin(), elements.cend(),
+        std::ostream_iterator<int>(std::cout, " "));
 
 
 return deck
