@@ -44,7 +44,7 @@ int generateDeck(){
 
         temp.
     }
-    
+
 }
 int getDeck(){
 
