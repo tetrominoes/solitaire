@@ -18,7 +18,9 @@ class Deck{
         for(int i = 0; i<4;i++){
             char currentSuit = this->SUITS[i];
             for(int j = 0; j<13;j++){
-                //to do
+                Card* card=new Card();
+                card->setCardValue(j);
+                Cards.push_back(Card);
             }
         }
     }
