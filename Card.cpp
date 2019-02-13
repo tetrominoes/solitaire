@@ -5,12 +5,12 @@ class Card{
     public:
     int cardValue;
     char suit;
-    char color;
+    bool color;
     bool faceUp;
 
 
     void printCard(){
-        cout<<"Card: " << suit << cardValue<< "FaceUp:"<< faceUp<<"\n";
+        cout<<"Card: " << color<< "-" << suit << "-"<< cardValue<< "-"<< faceUp<<"\n";
     }
 
     char getSuit(){
@@ -34,11 +34,11 @@ class Card{
     }
 };
 
-int main(){
+/*int main(){
     Card card1;
     card1.cardValue = 1;
     card1.suit = 'S';
     card1.faceUp = true;
     card1.printCard();
     return 0;
-}
+}**/
