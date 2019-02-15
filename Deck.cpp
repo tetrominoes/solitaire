@@ -70,22 +70,3 @@ int main(){
     }
 
 }
-/*
-    std::random_device rd;
-    mt19937 mt(rd());
-    auto currentIndexCounter = deck.size(); // change conditional on for-loop
-    for (auto iter = deck.rbegin(); iter != deck.rend(); ++iter, --currentIndexCounter)
-    {//deck.rbegin && deck.rend to cycle through the deck so may be easier to just hard code?
-        // get int distribution with new range
-        std::uniform_int_distribution<> dis(0, currentIndexCounter);
-        const int randomIndex = dis(mt);
-
-        if (*iter != deck.at(randomIndex))
-        {
-            std::swap(deck.at(randomIndex), *iter);
-        }
-    }
-    std::cout << "\nAfter: ";
-    std::copy(elements.cbegin(), elements.cend(),
-        std::ostream_iterator<int>(std::cout, " "));
-    */
