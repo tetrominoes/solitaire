@@ -6,7 +6,7 @@ using namespace std;
 
 class FoundationPile{
 
-   std::vector<Card> Cards;
+   std::vector<vector<Card>> Cards;
    int initSize;
 
 //FoundationPile Method
