@@ -45,7 +45,32 @@ class Deck{
 };
 
 //using fisher yates method algorthim to shuffle cards
-std::vector<Card>* shuffle(vector<Card> deck){
+vector<Card> shuffle(vector<Card> deck){
+    vector<Card> shuffledCards;
+    for(int n = deck.size() - 1; n> 0; --n){
+        int k = rand() % n + 1;
+
+        Card temp = deck.at(k);
+        shuffledCards.push_back(temp);
+        deck.erase(deck.begin() + k - 1);
+    }
+
+    return shuffledCards;
+}
+
+
+int main(){
+    Deck deck;
+    vector<Card> cards = deck.generateDeck();
+    cards = shuffle(cards);
+    cout << "cards shuffled";
+    for(int i = 0; i < cards.size();i++)
+    {
+        cards.at(i).printCard();
+    }
+
+}
+/*
     std::random_device rd;
     mt19937 mt(rd());
     auto currentIndexCounter = deck.size(); // change conditional on for-loop
@@ -60,23 +85,7 @@ std::vector<Card>* shuffle(vector<Card> deck){
             std::swap(deck.at(randomIndex), *iter);
         }
     }
-
-    /*std::cout << "\nAfter: ";
+    std::cout << "\nAfter: ";
     std::copy(elements.cbegin(), elements.cend(),
         std::ostream_iterator<int>(std::cout, " "));
     */
-
-return deck;
-}
-
-
-int main(){
-    Deck deck;
-    vector<Card> cards = deck.generateDeck();
-    shuffle(cards);
-    for(int i = 0; i < cards.size();i++)
-    {
-        cards.at(i).printCard();
-    }
-
-}
