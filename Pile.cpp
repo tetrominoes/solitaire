@@ -7,7 +7,7 @@ using namespace std;
 class Pile{
 
    std::vector<Card> Cards;
-
+public:
 Pile(){
 
 }

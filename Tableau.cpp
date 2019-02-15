@@ -1,35 +1,55 @@
-//Class to represent a tableauPile.
+
+//Class to represent the Tableau pile in solitaire.
+
+
 #include <iostream>
 #include "Pile.cpp"
 #include <vector>
 using namespace std;
 
-class TableauPile{
 
-   vector<vector<Card>> Cards;
-   int initSize;
-
-//TableauPile Method
-TableauPile(int value){
-
-}
-
-
-//bool canReceive: determines if the Tableau can recieve current card
-/*bool canReceieve{
-    //if Tableau is empty, and card is an ace
-    if (empty && (currentcard.getCardValue = 1)){
-        return true;
+class Tableau{
+private:
+    Pile pile;
+public:
+    Tableau(int amtC){
+        for(int i = 0; i < amtC; i++){
+            push(Solitaire.deck().pop);
+        }
+        pile.topCard().flip();
     }
-    //current card is the same suit, and 1 more than the previous top card
-    else if(currentcard.getSuit() = topCard.getSuit() && currentcard.getValue() = topCard.getValue() + 1){
-        return true;
+
+    bool canRecieve(Card aCard){
+        if(pile.empty()){
+            return aCard.getCardValue() == 13);
+        }
+        return (aCard.getColor() != pile.topCard().getColor()) && (aCard.getCardValue() == pile.topCard().getCardValue()-1);
+
     }
-    return false;
-}
-*/
-void placeCard(){
 
-}
+    void placeCard(){
+        if(pile.empty()){
+            return;
+        }
+        Card topCard = pile.topCard();
+        if(!topCard.isFaceUp()){
+            topCard.flip();
+            return;
+        }
+        topCard = pile.pop();
+        for (int i = 0; i <4; i++){
+            if(Solitaire.suitPile(i).canRecieve(topCard)){
+                Solitaire.suitPile(i).push(topCard);
+                return;
+            }
+        }
+        for (int i =0; i <7; i++){
+            if (Solitaire.tableau(i).canReceive(topCard)){
+                Solitaire.tableau(i).push(topCard);
+                return;
+            }
+        }
+        push(topCard);
+    }
 
-}
+};
