@@ -3,14 +3,19 @@
 #include <vector>
 #include "Card.cpp"
 
+//resources for shuffle
+#include <algorithm>
+#include <iterator>
+#include <random>
+
 using namespace std;
 //class Deck: consists of a vector of Cards.
 class Deck{
 
     public:
-    static char SUITS[4] = {'S','C','D','H'};
-    static int VALUES[13]= {1,2,3,4,5,6,7,8,9,10,11,12,13};
-    static bool COLORS[2] = {true,false};
+    char SUITS[4] = {'S','C','D','H'};
+    int VALUES[13]= {1,2,3,4,5,6,7,8,9,10,11,12,13};
+    bool COLORS[2] = {true,false};
     //TRUE = BLACK
     //FALSE = RED
     vector<Card> Cards;
@@ -36,39 +41,30 @@ class Deck{
         }
         return this->Cards;
     }
+};
 
 //using fisher yates method algorthim to shuffle cards
 vector<Card> shuffle(vector<Card> deck){
-    auto currentIndexCounter = deck.size();
-    for (auto iter = elements.rbegin(); iter != elements.rend();
-        ++iter, --currentIndexCounter)
-    {
-        // get int distribution with new range
-        std::uniform_int_distribution<> dis(0, currentIndexCounter);
-        const int randomIndex = dis(mt);
+    vector<Card> shuffledCards;
+    for(int n = deck.size() - 1; n> 0; --n){
+        int k = rand() % n + 1;
 
-        if (*iter != elements.at(randomIndex))
-        {
-            std::swap(elements.at(randomIndex), *iter);
-        }
+        Card temp = deck.at(k);
+        shuffledCards.push_back(temp);
+        deck.erase(deck.begin() + k);
     }
-
-    std::cout << "\nAfter: ";
-    std::copy(elements.cbegin(), elements.cend(),
-        std::ostream_iterator<int>(std::cout, " "));
-
-
-return deck
+    return shuffledCards;
 }
 
-};
 
 int main(){
     Deck deck;
     vector<Card> cards = deck.generateDeck();
+    cards = shuffle(cards);
+    cout << "cards shuffled\n";
     for(int i = 0; i < cards.size();i++)
     {
         cards.at(i).printCard();
     }
-}
 
+}
