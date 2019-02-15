@@ -51,7 +51,7 @@ vector<Card> shuffle(vector<Card> deck){
 
         Card temp = deck.at(k);
         shuffledCards.push_back(temp);
-        deck.erase(deck.begin() + k - 1);
+        deck.erase(deck.begin() + k);
     }
     return shuffledCards;
 }
@@ -61,7 +61,7 @@ int main(){
     Deck deck;
     vector<Card> cards = deck.generateDeck();
     cards = shuffle(cards);
-    cout << "cards shuffled";
+    cout << "cards shuffled\n";
     for(int i = 0; i < cards.size();i++)
     {
         cards.at(i).printCard();
