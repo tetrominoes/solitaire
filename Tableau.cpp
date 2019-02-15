@@ -1,8 +1,12 @@
+
 //Class to represent the Tableau pile in solitaire.
+
+
 #include <iostream>
 #include "Pile.cpp"
 #include <vector>
 using namespace std;
+
 
 class Tableau{
 private:
