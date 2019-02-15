@@ -37,19 +37,8 @@ class Deck{
         return this->Cards;
     }
 
-};
-
-int main(){
-    Deck deck;
-    vector<Card> cards = deck.generateDeck();
-    for(int i = 0; i < cards.size();i++)
-    {
-        cards.at(i).printCard();
-    }
-}
-
 //using fisher yates method algorthim to shuffle cards
-vector<card> shuffle(vector<card> deck){
+vector<Card> shuffle(vector<Card> deck){
     auto currentIndexCounter = deck.size();
     for (auto iter = elements.rbegin(); iter != elements.rend();
         ++iter, --currentIndexCounter)
@@ -71,3 +60,15 @@ vector<card> shuffle(vector<card> deck){
 
 return deck
 }
+
+};
+
+int main(){
+    Deck deck;
+    vector<Card> cards = deck.generateDeck();
+    for(int i = 0; i < cards.size();i++)
+    {
+        cards.at(i).printCard();
+    }
+}
+
