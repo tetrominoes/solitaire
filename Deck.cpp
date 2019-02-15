@@ -3,14 +3,19 @@
 #include <vector>
 #include "Card.cpp"
 
+//resources for shuffle
+#include <algorithm>
+#include <iterator>
+#include <random>
+
 using namespace std;
 //class Deck: consists of a vector of Cards.
 class Deck{
 
     public:
-    static char SUITS[4] = {'S','C','D','H'};
-    static int VALUES[13]= {1,2,3,4,5,6,7,8,9,10,11,12,13};
-    static bool COLORS[2] = {true,false};
+    char SUITS[4] = {'S','C','D','H'};
+    int VALUES[13]= {1,2,3,4,5,6,7,8,9,10,11,12,13};
+    bool COLORS[2] = {true,false};
     //TRUE = BLACK
     //FALSE = RED
     vector<Card> Cards;
@@ -39,35 +44,39 @@ class Deck{
 
 };
 
-int main(){
-    Deck deck;
-    vector<Card> cards = deck.generateDeck();
-    for(int i = 0; i < cards.size();i++)
-    {
-        cards.at(i).printCard();
-    }
-}
-
 //using fisher yates method algorthim to shuffle cards
-vector<card> shuffle(vector<card> deck){
-    auto currentIndexCounter = deck.size();
-    for (auto iter = elements.rbegin(); iter != elements.rend();
-        ++iter, --currentIndexCounter)
-    {
+std::vector<Card>* shuffle(vector<Card> deck){
+    std::random_device rd;
+    mt19937 mt(rd());
+    auto currentIndexCounter = deck.size(); // change conditional on for-loop
+    for (auto iter = deck.rbegin(); iter != deck.rend(); ++iter, --currentIndexCounter)
+    {//deck.rbegin && deck.rend to cycle through the deck so may be easier to just hard code?
         // get int distribution with new range
         std::uniform_int_distribution<> dis(0, currentIndexCounter);
         const int randomIndex = dis(mt);
 
-        if (*iter != elements.at(randomIndex))
+        if (*iter != deck.at(randomIndex))
         {
-            std::swap(elements.at(randomIndex), *iter);
+            std::swap(deck.at(randomIndex), *iter);
         }
     }
 
-    std::cout << "\nAfter: ";
+    /*std::cout << "\nAfter: ";
     std::copy(elements.cbegin(), elements.cend(),
         std::ostream_iterator<int>(std::cout, " "));
+    */
+
+return deck;
+}
 
 
-return deck
+int main(){
+    Deck deck;
+    vector<Card> cards = deck.generateDeck();
+    shuffle(cards);
+    for(int i = 0; i < cards.size();i++)
+    {
+        cards.at(i).printCard();
+    }
+
 }
