@@ -41,7 +41,6 @@ class Deck{
         }
         return this->Cards;
     }
-
 };
 
 //using fisher yates method algorthim to shuffle cards
@@ -54,7 +53,6 @@ vector<Card> shuffle(vector<Card> deck){
         shuffledCards.push_back(temp);
         deck.erase(deck.begin() + k - 1);
     }
-
     return shuffledCards;
 }
 
