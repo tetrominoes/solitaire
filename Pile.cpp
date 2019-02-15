@@ -7,7 +7,7 @@ using namespace std;
 class Pile{
 
    std::vector<Card> Cards;
-
+public:
 Pile(){
 
 }
@@ -24,7 +24,7 @@ Card topCard(){
     return this->Cards.front();
 }
 bool empty(){
-    if(this.Cards.size()==0)
+    if(this->Cards.size()==0)
         return true;
     else
         return false;
