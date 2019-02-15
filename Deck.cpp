@@ -20,7 +20,7 @@ class Deck{
     //FALSE = RED
     vector<Card> Cards;
 
-    //Method to generate a new deck of cards. The deck consists of a standard deck of 50 cards, minus the Jokers.
+    //Method to generate a new deck of cards. The deck consists of a standard deck of 52 cards, minus the Jokers.
     vector<Card> generateDeck(){
         bool temp = false;
         //For each suit in the deck, generate all 13 cards.

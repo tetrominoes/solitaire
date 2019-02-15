@@ -6,7 +6,7 @@ using namespace std;
 
 class TableauPile{
 
-   std::vector<Card> Cards;
+   vector<vector<Card>> Cards;
    int initSize;
 
 //TableauPile Method
