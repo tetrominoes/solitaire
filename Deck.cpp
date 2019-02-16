@@ -41,27 +41,28 @@ class Deck{
         }
         return this->Cards;
     }
+    //using fisher yates method algorthim to shuffle cards
+    vector<Card> shuffle(){
+        vector<Card> shuffledCards;
+        for(int n = Cards.size() - 1; n> 0; --n){
+            int k = rand() % n + 1;
+
+            Card temp = Cards.at(k);
+            shuffledCards.push_back(temp);
+            Cards.erase(Cards.begin() + k);
+        }
+        return shuffledCards;
+    }
 };
 
-//using fisher yates method algorthim to shuffle cards
-vector<Card> shuffle(vector<Card> deck){
-    vector<Card> shuffledCards;
-    for(int n = deck.size() - 1; n> 0; --n){
-        int k = rand() % n + 1;
-
-        Card temp = deck.at(k);
-        shuffledCards.push_back(temp);
-        deck.erase(deck.begin() + k);
-    }
-    return shuffledCards;
-}
 
 
 int main(){
     Deck deck;
     vector<Card> cards = deck.generateDeck();
-    cards = shuffle(cards);
-    cout << "cards shuffled\n";
+    cards = deck.shuffle();
+    cout << "cards shuffled";
+
     for(int i = 0; i < cards.size();i++)
     {
         cards.at(i).printCard();
