@@ -4,14 +4,14 @@
 #include <vector>
 using namespace std;
 
-class FoundationPile{
+class FoundationPile : public Pile{
 private:
    Pile foundPile;
-   int initSize =0;
+   int initSize = 0;
 public:
 //FoundationPile Method
 FoundationPile(int value){
-    foundPile.empty() == true;
+    //foundPile.empty() == true;
 }
 
 //bool canReceive: determines if the foundation can recieve current card
@@ -27,4 +27,4 @@ bool canReceieve(Card currentCard){
     return false;
 }
 
-}
+};
