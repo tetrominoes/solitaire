@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include <iostream>
 #include <vector>
 #include "Deck.cpp"
@@ -137,4 +138,5 @@ void setupTable(vector<Card> deck){
      for(int i = 0; i<toMove.size();i++){
 
      }
+
  }
