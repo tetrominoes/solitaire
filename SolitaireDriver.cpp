@@ -63,6 +63,32 @@ void setupTable(vector<Card> deck){
 }
 
 
+//method playGame: Runs through the algorithm to play a game of solitaire, and returns if the current game was won
+bool playGame() {
+    //setup a new game
+    newGame();
+    setUpTable();
+
+    //For each Move
+    while (checkWin() == false && timesCycled < 4){
+        newMove();
+    }
+return gameWon;
+}
+
+//method move: follow the algorithm to make a new move
+void newMove() {
+    checkWin();
+    scanTableauToFoundation();
+    checkWin();
+    scanTableauToTableau();
+    checkWin();
+
+
+}
+
+
+
  bool checkWin(){
      int count = 0;
       for(int i = 0; i<4;i++){
