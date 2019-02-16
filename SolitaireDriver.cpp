@@ -39,6 +39,7 @@ void setupTable(vector<Card> deck){
   }
   }
 }
+
  bool checkWin(){
      int count = 0;
       for(int i = 0; i<4;i++){
@@ -57,32 +58,8 @@ void setupTable(vector<Card> deck){
          vector<Card> cards = tableau.at(i).getCards();
          size = cards.size()-1;
         for(int j = 0; j<4;j++){
-            if(foundation.at(j))
-
-        }
-     }
- }
-
- bool checkWin(){
-     int count = 0;
-      for(int i = 0; i<4;i++){
-          vector<Card> cards = foundation.at(i).getCards();
-          if(cards.at(0).getCardValue() == 13)
-                count++;
-      }
-      if(count == 4)
-        return true;
-      return false;
- }
-
- void scanTableauToFoundation(){
-     int size;
-     for(int i = 0; i<7;i++){
-         vector<Card> cards = tableau.at(i).getCards();
-         //size = cards.size()-1;
-        for(int j = 0; j<4;j++){
-            if(foundation.at(j).canReceieve(cards.at(0))){
-                Card card = cards.at(size()-1);
+            if(foundation.at(j).canReceieve(cards.at(0),foundation.at(j))){
+                Card card = cards.at(size-1);
                 cards.pop_back();
                 foundation.at(j).push(card);
             }
@@ -92,27 +69,49 @@ void setupTable(vector<Card> deck){
 
  void scanDrawPileToFoundation(){
      for(int i = 0; i<4;i++){
-        if(foundation.at(i).canReceieve(deck.at(deckIndex)))
+        if(foundation.at(i).canReceieve(deck.at(deckIndex),foundation.at(i)))
         {
             Card card = deck.at(deckIndex);
             deck.erase(deck.begin()+deckIndex);
-            foundation.at(j).push(card);
+            foundation.at(i).push(card);
         }
      }
  }
 
  void checkOpenTableau(){
      int size;
-     int j;
+     int j=0;
      bool faceUp = true;
+     //LOOP THROUGH WHOLE TABLE
      for(int i = 0; i < 7; i++){
          vector<Card> cards = tableau.at(i).getCards();
          size = cards.size();
-         j = 0;
-         while(j < size && faceUp){
-            if(cards.at(size-1).isFaceUp())
-
+         //FINDS # OF FACEUP IN COLUMN
+         for(int j = 0;j<size;j++){
+             if(cards.at(j).isFaceUp()){
+                j++;
+             }
+             else
+                break;
          }
+         //FOR EACH FACEUP CARD
+        for(int k = j; k >= 0; --k){
+            //FOR EACH 'OTHER COLUMN'
+            for(int q = 0;q<7;q++){
+                //not equal column
+                if(i!=q){
+                    //
+                    if(tableau.at(q).canRecieve(cards.at(size-k)))
+                        moveStackOfCards(,q)
+                }
+            }
+        }
+     }
+ }
+
+
+ void moveStackOfCards(vector<Card> toMove,int tableauIndex){
+     for(int i = 0; i<toMove.size();i++){
 
      }
  }

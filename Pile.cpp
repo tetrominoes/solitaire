@@ -6,31 +6,31 @@ using namespace std;
 
 class Pile{
 
-   std::vector<Card> Cards;
+   std::vector<Card> cards;
 public:
 Pile(){
 
 }
-Card pop(){
-    Card temp = this->Cards.front();
-    this->Cards.erase(this->Cards.begin());
+Card pop(){//wrong
+    Card temp = this->cards.front();
+    this->cards.erase(this->cards.begin());
     return temp;
 }
 
 void push(Card card){
-    this->Cards.push_back(card);
+    this->cards.push_back(card);
 }
 Card topCard(){
-    return this->Cards.front();
+    return this->cards.at(cards.size()-1);
 }
 bool empty(){
-    if(this->Cards.size()==0)
+    if(this->cards.size()==0)
         return true;
     else
         return false;
 }
 vector<Card> getCards(){
-    return this->Cards;
+    return this->cards;
 }
 
 };
