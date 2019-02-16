@@ -33,6 +33,13 @@ void newGame(){
 //distribute cards for each of the games
 void setupTable(vector<Card> deck){
   //cycle thru all tableau's
+  int[] tab1 = {1};
+  int[] tab2 = {2,8};
+  int[] tab3 = {3,9,14};
+  int[] tab4 = {4,10,15,19}
+  int[] tab5 = {5,11,16,20,23}
+  int[] tab6 = {6,12,17,21,24,26}
+  int[] tab7 = {7,13,18.22,25,27,28}
   for(int i = 0; i < 7; ++i){
     for(){//cycle thru all individual tableaus
       //add card to tableau
