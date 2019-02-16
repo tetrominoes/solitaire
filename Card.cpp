@@ -38,6 +38,12 @@ class Card{
     void setCardValue(int cardValue){
         this->cardValue = cardValue;
     }
+    bool isFaceUp(){
+        return faceUp;
+    }
+    void flip(){
+        faceUp = !faceUp;
+    }
 };
 
 /*int main(){

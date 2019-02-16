@@ -8,20 +8,20 @@
 using namespace std;
 
 
-class Tableau{
+class Tableau : public Pile{
 private:
     Pile pile;
 public:
     Tableau(int amtC){
         for(int i = 0; i < amtC; i++){
-            push(Solitaire.deck().pop);
+            push(Solitaire.deck().pop());
         }
         pile.topCard().flip();
     }
 
     bool canRecieve(Card aCard){
         if(pile.empty()){
-            return aCard.getCardValue() == 13);
+            return (aCard.getCardValue() == 13);
         }
         return (aCard.getColor() != pile.topCard().getColor()) && (aCard.getCardValue() == pile.topCard().getCardValue()-1);
 
@@ -38,8 +38,8 @@ public:
         }
         topCard = pile.pop();
         for (int i = 0; i <4; i++){
-            if(Solitaire.suitPile(i).canRecieve(topCard)){
-                Solitaire.suitPile(i).push(topCard);
+            if(Solitaire.FoundationPile(i).canRecieve(topCard)){
+                Solitaire.FoundationPile(i).push(topCard);
                 return;
             }
         }
