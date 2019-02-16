@@ -5,10 +5,7 @@
 using namespace std;
 
 class FoundationPile{
-private:
-   Pile foundPile;
-   int initSize =0;
-public:
+
 //FoundationPile Method
 FoundationPile(int value){
     foundPile.empty = true;
