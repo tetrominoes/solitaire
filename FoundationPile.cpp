@@ -4,15 +4,16 @@
 #include <vector>
 using namespace std;
 
-class FoundationPile{
+class FoundationPile: public Pile{
 
-   std::vector<vector<Card>> Cards;
+
    int initSize;
 
 //FoundationPile Method
 FoundationPile(int value){
-
 }
+
+
 
 //bool canReceive: determines if the foundation can recieve current card
 /*bool canReceieve{
