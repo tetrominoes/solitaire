@@ -101,6 +101,12 @@ void setupTable(vector<Card> deck){
      }
  }
 
+ void moveStackOfCards(vector<Card> toMove,int tableauIndex){
+     for(int i = 0; i<toMove.size();i++){
+        //TODO
+     }
+ }
+
  void checkOpenTableau(){
      int size;
      int j=0;
@@ -125,17 +131,15 @@ void setupTable(vector<Card> deck){
                 if(i!=q){
                     //
                     if(tableau.at(q).canRecieve(cards.at(size-k)))
-                        moveStackOfCards(,q)
+                    {
+                        vector<Card> toAdd = vector<Card>(cards.begin()+size-k, cards.begin()+size-1);
+                        moveStackOfCards(toAdd,q);
+                        k=-1;
+                        q=7;
+                        //yikes
+                    }
                 }
             }
         }
      }
- }
-
-
- void moveStackOfCards(vector<Card> toMove,int tableauIndex){
-     for(int i = 0; i<toMove.size();i++){
-
-     }
-
  }
