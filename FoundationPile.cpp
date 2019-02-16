@@ -27,4 +27,4 @@ bool canReceieve(Card currentCard){
     return false;
 }
 
-}
+};
