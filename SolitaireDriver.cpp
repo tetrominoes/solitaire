@@ -5,12 +5,17 @@
 #include "Tableau.cpp"
 
 using namespace std;
+//variables
 int numGames = 0;
 vector<FoundationPile> foundation;
 vector<Tableau> tableau;
 vector<Card> deck;
 int deckIndex;
-public:
+int timesCycled;
+int gamesWon = 0;
+bool gameWon = false;
+double winPercentage;
+
 //this vector will prob be a collection of vectors that
 //represent each 'pile'
 //also known as table for a single game
@@ -19,6 +24,16 @@ int main(){
     cout << "Enter number of games to play";
     cin >> numGames;
 
+    //play numGames Games
+    for (int i=0; i<numGames; i++){
+        //playGame
+        if (playGame() = true){
+            gamesWon++;
+        }
+    }
+
+    winPercentage = gamesWon / numGames;
+    cout << "Win Percentage: " < winPercentage;
     return 0;
 }
 
@@ -33,12 +48,20 @@ void newGame(){
 //distribute cards for each of the games
 void setupTable(vector<Card> deck){
   //cycle thru all tableau's
+  int[] tab1 = {1};
+  int[] tab2 = {2,8};
+  int[] tab3 = {3,9,14};
+  int[] tab4 = {4,10,15,19}
+  int[] tab5 = {5,11,16,20,23}
+  int[] tab6 = {6,12,17,21,24,26}
+  int[] tab7 = {7,13,18.22,25,27,28}
   for(int i = 0; i < 7; ++i){
     for(){//cycle thru all individual tableaus
       //add card to tableau
   }
   }
 }
+
 
  bool checkWin(){
      int count = 0;
@@ -120,7 +143,3 @@ void setupTable(vector<Card> deck){
         }
      }
  }
-
-
-
-
