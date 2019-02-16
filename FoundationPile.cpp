@@ -14,9 +14,9 @@ FoundationPile(int value){
 }
 
 
-
+public:
 //bool canReceive: determines if the foundation can recieve current card
-bool canReceieve(Card currentCard){
+bool canReceieve(Card currentCard,Pile foundPile){
     //if foundation is empty, and card is an ace
     if (foundPile.empty() && (currentCard.getCardValue() == 1)){
         return true;
