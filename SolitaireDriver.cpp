@@ -10,7 +10,7 @@ vector<FoundationPile> foundation;
 vector<Tableau> tableau;
 vector<Card> deck;
 int deckIndex;
-
+public:
 //this vector will prob be a collection of vectors that
 //represent each 'pile'
 //also known as table for a single game
@@ -78,6 +78,12 @@ void setupTable(vector<Card> deck){
      }
  }
 
+ void moveStackOfCards(vector<Card> toMove,int tableauIndex){
+     for(int i = 0; i<toMove.size();i++){
+        //TODO
+     }
+ }
+
  void checkOpenTableau(){
      int size;
      int j=0;
@@ -102,7 +108,13 @@ void setupTable(vector<Card> deck){
                 if(i!=q){
                     //
                     if(tableau.at(q).canRecieve(cards.at(size-k)))
-                        moveStackOfCards(,q)
+                    {
+                        vector<Card> toAdd = vector<Card>(cards.begin()+size-k, cards.begin()+size-1);
+                        moveStackOfCards(toAdd,q);
+                        k=-1;
+                        q=7;
+                        //yikes
+                    }
                 }
             }
         }
@@ -110,9 +122,5 @@ void setupTable(vector<Card> deck){
  }
 
 
- void moveStackOfCards(vector<Card> toMove,int tableauIndex){
-     for(int i = 0; i<toMove.size();i++){
 
-     }
- }
 
