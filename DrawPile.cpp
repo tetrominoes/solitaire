@@ -7,7 +7,7 @@
 #include <vector>
 using namespace std;
 
-class DrawPile{
+class DrawPile : public Pile{
 private:
 Pile drawPile;
 int initSize = 0;

@@ -57,7 +57,7 @@ class Deck{
 
 
 
-int main(){
+/*int main(){
     Deck deck;
     vector<Card> cards = deck.generateDeck();
     cards = deck.shuffle();
@@ -68,4 +68,4 @@ int main(){
         cards.at(i).printCard();
     }
 
-}
+}**/

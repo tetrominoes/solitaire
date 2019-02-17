@@ -12,11 +12,8 @@ class Tableau : public Pile{
 private:
     Pile pile;
 public:
-    Tableau(int amtC){
-        for(int i = 0; i < amtC; i++){
-            push(Solitaire.deck().pop());
-        }
-        pile.topCard().flip();
+    Tableau(){
+        
     }
 
     bool canRecieve(Card aCard){
@@ -27,29 +24,29 @@ public:
 
     }
 
-    void placeCard(){
-        if(pile.empty()){
-            return;
-        }
-        Card topCard = pile.topCard();
-        if(!topCard.isFaceUp()){
-            topCard.flip();
-            return;
-        }
-        topCard = pile.pop();
-        for (int i = 0; i <4; i++){
-            if(Solitaire.FoundationPile(i).canRecieve(topCard)){
-                Solitaire.FoundationPile(i).push(topCard);
-                return;
-            }
-        }
-        for (int i =0; i <7; i++){
-            if (Solitaire.tableau(i).canReceive(topCard)){
-                Solitaire.tableau(i).push(topCard);
-                return;
-            }
-        }
-        push(topCard);
-    }
+    // void placeCard(){
+    //     if(pile.empty()){
+    //         return;
+    //     }
+    //     Card topCard = pile.topCard();
+    //     if(!topCard.isFaceUp()){
+    //         topCard.flip();
+    //         return;
+    //     }
+    //     topCard = pile.pop();
+    //     for (int i = 0; i <4; i++){
+    //         if(Solitaire.FoundationPile(i).canRecieve(topCard)){
+    //             Solitaire.FoundationPile(i).push(topCard);
+    //             return;
+    //         }
+    //     }
+    //     for (int i =0; i <7; i++){
+    //         if (Solitaire.tableau(i).canReceive(topCard)){
+    //             Solitaire.tableau(i).push(topCard);
+    //             return;
+    //         }
+    //     }
+    //     push(topCard);
+    // }
 
 };
