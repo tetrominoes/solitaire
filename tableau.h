@@ -5,9 +5,8 @@
 class tableau : public pile{
     public:
         bool canRecieve(card aCard);
-        pile singlePile;
+        //pile singlePile;
         tableau();
         std::vector<card> getCards();
 
 };
-

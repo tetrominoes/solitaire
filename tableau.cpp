@@ -5,20 +5,21 @@
 #include <iostream>
 #include "pile.h"
 #include <vector>
+#include "tableau.h"
 using namespace std;
 
 
-class tableau : public pile{
-private:
-    pile singlePile;
-public:
-    vector<card> cards;
 
-    tableau(){
+
+    pile singlePile;
+
+    vector<card> cardB;
+
+    tableau::tableau(){
         
     }
 
-    bool canRecieve(card aCard){
+    bool tableau::canRecieve(card aCard){
         if(singlePile.empty()){
             return (aCard.getCardValue() == 13);
         }
@@ -26,8 +27,8 @@ public:
         (aCard.getCardValue() == singlePile.topCard().getCardValue()-1);
 
     }
-    vector<card> getCards(){
-        return cards;
+    vector<card> tableau::getCards(){
+        return cardB;
     }
     // void placeCard(){
     //     if(pile.empty()){
@@ -53,5 +54,3 @@ public:
     //     }
     //     push(topCard);
     // }
-
-};

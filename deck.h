@@ -6,7 +6,8 @@
 #include "card.h"
 class deck{
     public:
+    deck();
     std::vector<card> generateDeck();
     std::vector<card> shuffle();
-    deck();
+    
 };

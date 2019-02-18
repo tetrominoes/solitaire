@@ -13,15 +13,20 @@ int numGames = 0;
 vector<foundationPile> foundation;
 vector<tableau> table; //group of 7 tableaus
 vector<card> playerDeck; //game cards
+
 int deckIndex = 0;
 int timesCycled;
 int gamesWon = 0;
-bool gameWon = false;
+//bool gameWon = false;
 double winPercentage;
 
 class solDriver{
+    
     public:
     //initialize a new game each time
+    solDriver(){
+        
+    }
  void newGame(){
     cout << "new game started";
     deck gameCards;
@@ -145,7 +150,7 @@ class solDriver{
 //distribute cards for each of the games
 void setupTable(){
   //create all tableau's
-  cout << "setting up table";
+  cout << "setting up table\n";
   
   //flip cards for setup
   int makefaceup [] = {0, 7, 13, 18, 22, 25, 27};
@@ -159,7 +164,7 @@ void setupTable(){
     tableau slot1;
     for (const int& i : tab1) { 
         card temp = playerDeck.at(i);
-        cout << "Tableau 1: Card" << i << " = " << temp.getCardValue() << "/n";
+        cout << "Tableau 1: Card" << i << " = " << temp.getCardValue() << "\n";
         slot1.push(temp);
     }
   //Tableau 2  
@@ -167,7 +172,7 @@ void setupTable(){
   tableau slot2;
     for (const int& i : tab2) { 
         card temp = playerDeck.at(i);
-        cout << "Tableau 2: Card" << i << " = " << temp.getCardValue() << "/n";
+        cout << "Tableau 2: Card" << i << " = " << temp.getCardValue() << "\n";
         slot2.push(temp);
     }
   //Tableau 3  
@@ -176,7 +181,7 @@ void setupTable(){
   table.push_back(slot3);
     for (const int& i : tab3) { 
         card temp = playerDeck.at(i);
-       cout << "Tableau 3: Card" << i << " = " << temp.getCardValue() << "/n";
+       cout << "Tableau 3: Card" << i << " = " << temp.getCardValue() << "\n";
         slot3.push(temp);
     }
   //Tableau 4  
@@ -184,7 +189,7 @@ void setupTable(){
   tableau slot4;
     for (const int& i : tab4) { 
         card temp = playerDeck.at(i);
-       cout << "Tableau 4: Card" << i << " = " << temp.getCardValue() << "/n";
+       cout << "Tableau 4: Card" << i << " = " << temp.getCardValue() << "\n";
         slot4.push(temp);
     }
     
@@ -193,7 +198,7 @@ void setupTable(){
   tableau slot5;
     for (const int& i : tab5) { 
         card temp = playerDeck.at(i);
-        cout << "Tableau 5: Card" << i << " = " << temp.getCardValue() << "/n";
+        cout << "Tableau 5: Card" << i << " = " << temp.getCardValue() << "\n";
         slot5.push(temp);
     }
     
@@ -202,7 +207,7 @@ void setupTable(){
   tableau slot6;
     for (const int& i : tab6) { 
         card temp = playerDeck.at(i);
-       cout << "Tableau 6: Card" << i << " = " << temp.getCardValue() << "/n";
+       cout << "Tableau 6: Card" << i << " = " << temp.getCardValue() << "\n";
         slot6.push(temp);
     }
     
@@ -211,7 +216,7 @@ void setupTable(){
   tableau slot7;
     for (const int& i : tab7) { 
         card temp = playerDeck.at(i);
-        cout << "Tableau 7: Card" << i << " = " << temp.getCardValue() << "/n";
+        cout << "Tableau 7: Card" << i << " = " << temp.getCardValue() << "\n";
         slot7.push(temp);
     }
     table.push_back(slot1);
@@ -227,7 +232,7 @@ void setupTable(){
         playerDeck.erase(playerDeck.begin()); 
     }
     
-    cout << "table is set up";
+    cout << "table is set up\n";
 }
 
 //return if the game was completed before cycling 3 times thru deck
@@ -271,19 +276,24 @@ int main(int argc, char *argv[]){
     cout << "beginning new game\n";
     solDriver game;
     game.newGame();
-    //game.setupTable();
-    //deckIndex = playerDeck.size()-1;
-    //while(checkTimesCycled()){
-    //    if(checkWin())
-    //    {
-    //        gamesWon++;
-    //    }
-    //    flipTopCards();
-    //    scanTableauToFoundation();
-   //     scanDrawPileToFoundation();
-    //    checkOpenTableau();
-    //    checkCardFromDeck();
-    //}
-    //cout << gamesWon;
+    game.setupTable();
+    
+    deckIndex = playerDeck.size()-1;
+    cout << "deck index " << deckIndex << "\n";
+    while(game.checkTimesCycled()){
+        cout << "start whhile \n";
+        if(game.checkWin())
+        {
+            gamesWon++;
+            cout << "games won";
+        }
+        game.flipTopCards();
+        game.scanTableauToFoundation();
+        game.scanDrawPileToFoundation();
+        game.checkOpenTableau();
+        game.checkCardFromDeck();
+        cout << "endof whhile \n";
+    }
+    cout << "games won" << gamesWon << "\n";
     return 0; 
 }

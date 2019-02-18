@@ -17,19 +17,19 @@ pile::pile(){
 //     return temp;
 // }
 
-void push(card newCard){
+void pile::push(card newCard){
     cards.push_back(newCard);
 }
-card topCard(){
+card pile::topCard(){
     return cards.at(cards.size()-1);
 }
-bool empty(){
+bool pile::empty(){
     if(cards.size()==0)
         return true;
     else
         return false;
 }
-vector<card> getCards(){
+vector<card> pile::getCards(){
     return cards;
 }
 

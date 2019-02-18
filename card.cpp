@@ -19,37 +19,37 @@ using namespace std;
         faceUp = false;
     }
         //method printCard: Prints all card attribute information to output.
-        void printCard(){
+        void card::printCard(){
             cout<<"Card: " << color<< "-" << suit << "-"<< cardValue<< "-"<< faceUp<<"\n";
         }
         //method getSuit: returns the char representing the suit of the card.
-        char getSuit(){
+        char card::getSuit(){
             return suit;
         }
         //method setSuit: sets a char to represent the suit of the card.
-        void setSuit(char newSuit){
+        void card::setSuit(char newSuit){
             suit = newSuit;
         }
         //method getColor: returns a bool representing the color of the card.
-        char getColor(){
+        char card::getColor(){
             return color;
         }
         //method setColor: sets a bool to represent the color of the card.
-        void setColor(char newColor){
+        void card::setColor(char newColor){
             color = newColor;
         }
         //method getCardValue: returns an int representing the value of the card.
-        int getCardValue(){
+        int card::getCardValue(){
             return cardValue;
         }
         //method setCardValue: sets an int to represent the value of the card.
-        void setCardValue(int newCardValue){
+        void card::setCardValue(int newCardValue){
             cardValue = newCardValue;
         }
-        bool isFaceUp(){
+        bool card::isFaceUp(){
             return faceUp;
         }
-        void flip(){
+        void card::flip(){
             faceUp = !faceUp;
         }
         

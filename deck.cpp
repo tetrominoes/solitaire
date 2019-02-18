@@ -10,21 +10,21 @@
 #include <random>
 
 using namespace std;
-//class Deck: consists of a vector of cards.
+//class deck: {///consists of a vector of cards.
 
+//deck::
 
-deck::deck(){
-    
-}
     char SUITS[4] = {'S','C','D','H'};
     int VALUES[13]= {1,2,3,4,5,6,7,8,9,10,11,12,13};
     bool COLORS[2] = {true,false};
     //TRUE = BLACK
     //FALSE = RED
     vector<card> cardsDeck;
-    
+    deck::deck(){
+        
+    }
     //Method to generate a new deck of cards. The deck consists of a standard deck of 52 cards, minus the Jokers.
-    vector<card> generateDeck(){
+    vector<card> deck::generateDeck(){
         cout<<"DECK";
         bool temp = false;
         //For each suit in the deck, generate all 13 cards.
@@ -49,7 +49,7 @@ deck::deck(){
         return cardsDeck;
     }
     //using fisher yates method algorthim to shuffle cards
-    vector<card> shuffle(){
+    vector<card> deck::shuffle(){
         vector<card> shuffledcards;
         for(int n = cardsDeck.size() - 1; n> 0; --n){
             int k = rand() % n + 1;
