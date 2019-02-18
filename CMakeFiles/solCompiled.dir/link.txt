@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/solCompiled.dir/foundationPile.cpp.o CMakeFiles/solCompiled.dir/card.cpp.o CMakeFiles/solCompiled.dir/tableau.cpp.o CMakeFiles/solCompiled.dir/deck.cpp.o CMakeFiles/solCompiled.dir/pile.cpp.o CMakeFiles/solCompiled.dir/solDriver.cpp.o  -o solCompiled 
