@@ -158,7 +158,15 @@ void setupTable(){
          playerDeck.at(i).flip();
         //temp.flip();
     }
-  
+  //make tableaus hete and add to table
+  for( int i = 0; i < 7; ++i){
+    for( int k = i; < 7; ++k){
+      table.get(k).push(gameDeck.at(deckIndex));
+	// access each table and add card at current index
+	++deckIndex; //increment to move to next working card
+    }
+  }
+  /*
   //Tableau 1
     int tab1 [] = {0};
     tableau slot1;
@@ -213,19 +221,12 @@ void setupTable(){
     
   //Tableau 7  
   int tab7 [] = {6, 12, 17, 21, 24, 26, 27};
-  tableau slot7;
+  tableau slo;
     for (const int& i : tab7) { 
         card temp = playerDeck.at(i);
         cout << "Tableau 7: Card" << i << " = " << temp.getCardValue() << "\n";
         slot7.push(temp);
-    }
-    table.push_back(slot1);
-    table.push_back(slot2);
-    table.push_back(slot3);
-    table.push_back(slot4);
-    table.push_back(slot5);
-    table.push_back(slot6);
-    table.push_back(slot7);
+   */
     //removes first 28 cards that were used for making tableaus
     for(int i = 0; i < 28; ++i)
     { 
