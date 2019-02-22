@@ -225,7 +225,15 @@ void setupTable(){
          playerDeck.at(i).flip();
         //temp.flip();
     }
-  
+  //make tableaus hete and add to table
+  for( int i = 0; i < 7; ++i){
+    for( int k = i; < 7; ++k){
+      table.get(k).push(gameDeck.at(deckIndex));
+	// access each table and add card at current index
+	++deckIndex; //increment to move to next working card
+    }
+  }
+  /*
   //Tableau 1
     int tab1 [] = {0};
     int tab2 [] = {1, 7};
@@ -260,6 +268,7 @@ void setupTable(){
     cout<<table.at(2).getCards().at(i).getCardValue()<<"\n";
     }
     
+
     //removes first 28 cards that were used for making tableaus
     for(int i = 0; i < 28; ++i)
     { 
