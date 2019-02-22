@@ -25,7 +25,6 @@ CMakeFiles/solCompiled.dir/solDriver.cpp.o: solDriver.cpp
 CMakeFiles/solCompiled.dir/solDriver.cpp.o: tableau.h
 
 CMakeFiles/solCompiled.dir/tableau.cpp.o: card.h
-CMakeFiles/solCompiled.dir/tableau.cpp.o: pile.h
 CMakeFiles/solCompiled.dir/tableau.cpp.o: tableau.cpp
 CMakeFiles/solCompiled.dir/tableau.cpp.o: tableau.h
 

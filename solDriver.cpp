@@ -1,3 +1,9 @@
+/**
+    solDriver.cpp
+    Purpose: Simulate games of Solitaire, determine if a game was won, and give a rate of wins/games
+    @author tetrominoes
+    @version 1.0 Feb. 2019
+*/
 #include <iostream>
 #include <vector>
 #include "deck.h"
@@ -15,10 +21,15 @@ vector<tableau> table; //group of 7 tableaus
 vector<card> playerDeck; //game cards
 
 int deckIndex = 0;
-int timesCycled;
+int timesCycled=0;
 int gamesWon = 0;
 //bool gameWon = false;
 double winPercentage;
+
+/**
+     * class solDriver()
+     * consturcted method to run the game of Solitaire
+ */
 
 class solDriver{
     
@@ -27,24 +38,46 @@ class solDriver{
     solDriver(){
         
     }
- void newGame(){
-    cout << "new game started";
-    deck gameCards;
     
+/**
+     * newGame()
+     * Start a new game of Solitaire.
+     * 1. Create a deck of cards
+     * 2. Shuffle the deck of cards
+     * 
+ */    
+    
+ void newGame(){
+    cout << "new game started\n";
+    deck gameCards;
+    cout<<"HERE1.1\n";
     playerDeck = gameCards.generateDeck();
+    cout<<"HERE1.2\n";
     playerDeck = gameCards.shuffle();
     
 }
     
-    //check times cycled.
+/**
+     * checkTimesCycled()
+     * Check how mant times the deck has been cycled through. If the number is > 3 (and the foundation is not full), then the game is lost.
+     * 
+     * @return bool: true if the deck has not been cycled too many times
+ */      
+    
     bool checkTimesCycled(){
-    if(timesCycled==3){
+    if(timesCycled<=3){
         return true;
     }
     return false;
     }
     
-    // check card
+/**
+     * checkCardFromDeck()
+     * Check the top card in the deck and edit deckIndex.
+     * If the card is the last in the deck, then the deck needs to be reset.
+     * Check to see if the card can be placed at the foundation, and tableau.
+ */      
+    
  void checkCardFromDeck(){
      if(deckIndex<-1){
          timesCycled++;
@@ -70,7 +103,12 @@ class solDriver{
             }
         }
     }
-    // check if current card from draw pile can go to foundation
+    
+    /**
+     * scanDrawPileToFoundation()
+     * check to see if the card at the top of the "draw" can be placed in the foundation pile.
+ */  
+
  void scanDrawPileToFoundation(){
      for(int i = 0; i<4;i++){
         if(foundation.at(i).canReceieve(playerDeck.at(deckIndex),foundation.at(i)))
@@ -81,7 +119,14 @@ class solDriver{
         }
      }
  }
-    // check if a tableau is open to recieve a card
+ 
+  /**
+     * checkOpenTableau()
+     * check if a tableau is open to recieve a card
+     * 
+     * @return bool moveCard: true if the card can move
+ */ 
+ 
  bool checkOpenTableau(){
      int size;
      int x=0;
@@ -123,9 +168,16 @@ class solDriver{
      return moveCard;
  }
  
- // moving stacks of cards between tableaus
-// from - location of target card | tableauIndexFrom location in its tableau
-// to - destination of target card | tableauIndexTo destination of new tableau
+   /**
+     * checkOpenTableau()
+     * moving stacks of cards between tableaus
+     * 
+     * @param from - location of target card 
+     * @param tableauIndexFrom - location in its tableau
+     * @param to - destination of target card 
+     * @param tableauIndexTo - destination of new tableau
+ */ 
+
  void moveStackOfCards(int from, int to, int tableauIndexTo, int tableauIndexFrom){
         //WHAT WE WANT TO MOVE
         vector<card> cardsFrom = table.at(tableauIndexFrom).getCards();
@@ -139,15 +191,30 @@ class solDriver{
 
  }
  
+   /**
+     * flipTopCards()
+     * change the value of faceUp to true for cards at the top of the pile
+     * 
+ */ 
+ 
  void flipTopCards(){
+     
     for(int i = 0;i<7;i++){
         vector<card> cards = table.at(i).getCards();
+        //cout<<cards.capacity()-1<<"\n";
         if(!cards.at(cards.size()-1).isFaceUp()){
+            
             cards.at(cards.size()-1).flip();
          }
+         
     }
 }
-//distribute cards for each of the games
+
+   /**
+     * setupTable()
+      * Create a table of cards to represent the playing space, or all 7 tableaus.
+ */ 
+ 
 void setupTable(){
   //create all tableau's
   cout << "setting up table\n";
@@ -161,94 +228,86 @@ void setupTable(){
   
   //Tableau 1
     int tab1 [] = {0};
-    tableau slot1;
+    int tab2 [] = {1, 7};
+    int tab3 [] = {2, 8, 13};
+    int tab4 [] = {3, 9, 14, 18};
+    int tab5 [] = {4, 10, 15, 19, 22};
+    int tab6 [] = {5, 11, 16, 20, 23, 25};
+    int tab7 [] = {6, 12, 17, 21, 24, 26, 27};
+    
+    /* tableau slot1;
     for (const int& i : tab1) { 
         card temp = playerDeck.at(i);
-        cout << "Tableau 1: Card" << i << " = " << temp.getCardValue() << "\n";
+        cout << "Tableau 1: Card"; //<< i << " = " << temp.printCard() << "\n";
+        temp.printCard();
         slot1.push(temp);
     }
-  //Tableau 2  
-  int tab2 [] = {1, 7};
-  tableau slot2;
-    for (const int& i : tab2) { 
-        card temp = playerDeck.at(i);
-        cout << "Tableau 2: Card" << i << " = " << temp.getCardValue() << "\n";
-        slot2.push(temp);
+    */
+    tableau slot3;
+    slot3.push(playerDeck.at(2));
+    slot3.push(playerDeck.at(8));
+    slot3.push(playerDeck.at(13));
+    
+    /*cout << "size of tab3 " << slot3.getCards().size() ;
+    for(int b = 0; b<table.size();b++){
+        for(int c = 0; c<table.at(b).getCards().size();c++){
+            cout<<table.at(b).getCards().at(c).getCardValue()<<" ";
+        }
+        cout<<"\n";
     }
-  //Tableau 3  
-  int tab3 [] = {2, 8, 13};
-  tableau slot3;
-  table.push_back(slot3);
-    for (const int& i : tab3) { 
-        card temp = playerDeck.at(i);
-       cout << "Tableau 3: Card" << i << " = " << temp.getCardValue() << "\n";
-        slot3.push(temp);
-    }
-  //Tableau 4  
-  int tab4 [] = {3, 9, 14, 18};
-  tableau slot4;
-    for (const int& i : tab4) { 
-        card temp = playerDeck.at(i);
-       cout << "Tableau 4: Card" << i << " = " << temp.getCardValue() << "\n";
-        slot4.push(temp);
+    for(int i = 0 ; i<table.at(2).getCards().size(); i++){
+        //cout<<"HEREHERE";
+    cout<<table.at(2).getCards().at(i).getCardValue()<<"\n";
     }
     
-  //Tableau 5   
-  int tab5 [] = {4, 10, 15, 19, 22};
-  tableau slot5;
-    for (const int& i : tab5) { 
-        card temp = playerDeck.at(i);
-        cout << "Tableau 5: Card" << i << " = " << temp.getCardValue() << "\n";
-        slot5.push(temp);
-    }
-    
-  //Tableau 6 
-  int tab6 [] = {5, 11, 16, 20, 23, 25};
-  tableau slot6;
-    for (const int& i : tab6) { 
-        card temp = playerDeck.at(i);
-       cout << "Tableau 6: Card" << i << " = " << temp.getCardValue() << "\n";
-        slot6.push(temp);
-    }
-    
-  //Tableau 7  
-  int tab7 [] = {6, 12, 17, 21, 24, 26, 27};
-  tableau slot7;
-    for (const int& i : tab7) { 
-        card temp = playerDeck.at(i);
-        cout << "Tableau 7: Card" << i << " = " << temp.getCardValue() << "\n";
-        slot7.push(temp);
-    }
-    table.push_back(slot1);
-    table.push_back(slot2);
-    table.push_back(slot3);
-    table.push_back(slot4);
-    table.push_back(slot5);
-    table.push_back(slot6);
-    table.push_back(slot7);
     //removes first 28 cards that were used for making tableaus
     for(int i = 0; i < 28; ++i)
     { 
         playerDeck.erase(playerDeck.begin()); 
     }
-    
-    cout << "table is set up\n";
+    */
+    foundationPile pile1;
+    foundationPile pile2;
+    foundationPile pile3;
+    foundationPile pile4;
+    foundation.push_back(pile1);
+    foundation.push_back(pile2);
+    foundation.push_back(pile3);
+    foundation.push_back(pile4);
+    cout << "tab3 is set up\n";
 }
 
-//return if the game was completed before cycling 3 times thru deck
+   /**
+     * checkWin()
+     * check if the game has been won. The foundation must be completed, the other piles empty, and the deck cycled <=3 times
+     * 
+     * @return bool true is game is won
+ */ 
  bool checkWin(){
+     
      int count = 0;
+     
       for(int i = 0; i<4;i++){
+          //cout<<"inside check win\n";
+          
           vector<card> cards = foundation.at(i).getCards();
+          if(!cards.empty()){
           if(cards.at(cards.size()-1).getCardValue() == 13)
                 count++;
+          }
       }
+      
       if(count == 4){
         return true;
       }
       return false;
  }
- // check if cards from tableaus can go to foundation
+ 
+    /**
+     * checkWin()
+     * check if cards from tableaus can go to foundation
+     * 
+ *//
  void scanTableauToFoundation(){
      int size;
      for(int i = 0; i<7;i++){
@@ -266,34 +325,38 @@ void setupTable(){
         }
      }
  }
- 
- 
- 
 };
 
 int main(int argc, char *argv[]){
+    system("python banner.py");
     cout << "Solitaire initialized\n";
     cout << "beginning new game\n";
     solDriver game;
+    
     game.newGame();
     game.setupTable();
-    
-    deckIndex = playerDeck.size()-1;
-    cout << "deck index " << deckIndex << "\n";
+    cout << "--table setup--\n" ;
+    /* deckIndex = playerDeck.size()-1;
+     cout << "deck index " << deckIndex << "\n";
     while(game.checkTimesCycled()){
-        cout << "start whhile \n";
+        
         if(game.checkWin())
         {
             gamesWon++;
-            cout << "games won";
         }
+        //cout<< "After If\n";
         game.flipTopCards();
+        cout<<"HERE1\n";
         game.scanTableauToFoundation();
         game.scanDrawPileToFoundation();
         game.checkOpenTableau();
         game.checkCardFromDeck();
-        cout << "endof whhile \n";
+        //cout << "endof while \n";
     }
-    cout << "games won" << gamesWon << "\n";
+    
+    for(int i; i< playerDeck.size(); ++i){
+        playerDeck.at(i).printCard();
+    }
+    //cout << "games won: " << gamesWon << "\n"; */
     return 0; 
 }

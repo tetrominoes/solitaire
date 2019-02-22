@@ -1,34 +1,67 @@
+/**
+    tableau.cpp
+    Purpose: Represent a tableau of cards: The tableau is the "playing space" of the Solitaire game
 
-//Class to represent the Tableau pile in solitaire.
-
-
+    @author tetrominoes
+    @version 1.0 Feb. 2019
+*/
 #include <iostream>
-#include "pile.h"
+//#include "pile.h"
 #include <vector>
 #include "tableau.h"
+#include "card.h"
+
 using namespace std;
 
+    vector<card> singleTableau;
 
-
-
-    pile singlePile;
-
-    vector<card> cardB;
-
+/**
+     * tableau::tableau()
+     * Establish the tableau of cards
+     * 
+ */
     tableau::tableau(){
         
     }
 
-    bool tableau::canRecieve(card aCard){
-        if(singlePile.empty()){
-            return (aCard.getCardValue() == 13);
+/**
+     * canRecieve()
+     * Method to determine if the tableau pile can recieve a given card
+     * 
+     * @param card potentialCard: the card to be recieved
+
+     * @return bool true if card can be recieved
+ */
+    bool tableau::canRecieve(card potentialCard){
+        if(singleTableau.empty()){
+            return (potentialCard.getCardValue() == 13);
         }
-        return (aCard.getColor() != singlePile.topCard().getColor()) && 
-        (aCard.getCardValue() == singlePile.topCard().getCardValue()-1);
+        return ((potentialCard.getColor() != singleTableau.at(singleTableau.size()-1).getColor()) && 
+        (potentialCard.getCardValue() == singleTableau.at(singleTableau.size()-1).getCardValue()-1));
 
     }
+    
+/**
+     * getCards()
+     * Returns the cards in the tableau pile
+     * 
+
+     * @return vector<card> singleTableau: the vector of cards representing the pile
+ */
+    
     vector<card> tableau::getCards(){
-        return cardB;
+        return singleTableau;
+    }
+    
+ /**
+     * push()
+     * Push a card to the tableau
+     * 
+     *@param card addCard: the card to add
+ */
+    
+    void tableau::push(card addCard){
+        singleTableau.push_back(addCard);
     }
     // void placeCard(){
     //     if(pile.empty()){
