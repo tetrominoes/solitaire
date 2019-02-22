@@ -10,25 +10,25 @@ using namespace std;
 
 
 
+    //being to phase out pile
+    //pile singlePile;
 
-    pile singlePile;
-
-    vector<card> cardB;
+    vector<card> singleTableau;
 
     tableau::tableau(){
         
     }
 
-    bool tableau::canRecieve(card aCard){
-        if(singlePile.empty()){
-            return (aCard.getCardValue() == 13);
+    bool tableau::canRecieve(card potentialCard){
+        if(singleTableau.empty()){
+            return (potentialCard.getCardValue() == 13);
         }
-        return (aCard.getColor() != singlePile.topCard().getColor()) && 
-        (aCard.getCardValue() == singlePile.topCard().getCardValue()-1);
+        return (potentialCard.getColor() != singleTableau.front().getColor()) && 
+        (potentialCard.getCardValue() == singleTableau.front().getCardValue()-1);
 
     }
     vector<card> tableau::getCards(){
-        return cardB;
+        return singleTableau;
     }
     // void placeCard(){
     //     if(pile.empty()){

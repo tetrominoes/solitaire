@@ -28,11 +28,13 @@ class solDriver{
         
     }
  void newGame(){
-    cout << "new game started";
+    cout << "new game started\n";
     deck gameCards;
     
     playerDeck = gameCards.generateDeck();
+    cout << "size of Deck " << playerDeck.size() << "\n";
     playerDeck = gameCards.shuffle();
+    
     
 }
     
@@ -154,85 +156,32 @@ void setupTable(){
   
   //flip cards for setup
   int makefaceup [] = {0, 7, 13, 18, 22, 25, 27};
-  for (const int& i : makefaceup) { 
+  for(const int& i : makefaceup) { 
          playerDeck.at(i).flip();
-        //temp.flip();
     }
+    cout << "--first cards flipped--\n";
+    
+    for(int t = 0; t < 7; ++t){
+        tableau temp;
+        table.push_back(temp);
+    }
+    cout << "--tableaus made--\n";
   //make tableaus hete and add to table
   for( int i = 0; i < 7; ++i){
-    for( int k = i; < 7; ++k){
-      table.get(k).push(gameDeck.at(deckIndex));
+    for(int k = i; k < 7; ++k){
+      
+      table.at(k).getCards().push_back(playerDeck.at(deckIndex));
+      
 	// access each table and add card at current index
 	++deckIndex; //increment to move to next working card
     }
   }
-  /*
-  //Tableau 1
-    int tab1 [] = {0};
-    tableau slot1;
-    for (const int& i : tab1) { 
-        card temp = playerDeck.at(i);
-        cout << "Tableau 1: Card" << i << " = " << temp.getCardValue() << "\n";
-        slot1.push(temp);
-    }
-  //Tableau 2  
-  int tab2 [] = {1, 7};
-  tableau slot2;
-    for (const int& i : tab2) { 
-        card temp = playerDeck.at(i);
-        cout << "Tableau 2: Card" << i << " = " << temp.getCardValue() << "\n";
-        slot2.push(temp);
-    }
-  //Tableau 3  
-  int tab3 [] = {2, 8, 13};
-  tableau slot3;
-  table.push_back(slot3);
-    for (const int& i : tab3) { 
-        card temp = playerDeck.at(i);
-       cout << "Tableau 3: Card" << i << " = " << temp.getCardValue() << "\n";
-        slot3.push(temp);
-    }
-  //Tableau 4  
-  int tab4 [] = {3, 9, 14, 18};
-  tableau slot4;
-    for (const int& i : tab4) { 
-        card temp = playerDeck.at(i);
-       cout << "Tableau 4: Card" << i << " = " << temp.getCardValue() << "\n";
-        slot4.push(temp);
-    }
-    
-  //Tableau 5   
-  int tab5 [] = {4, 10, 15, 19, 22};
-  tableau slot5;
-    for (const int& i : tab5) { 
-        card temp = playerDeck.at(i);
-        cout << "Tableau 5: Card" << i << " = " << temp.getCardValue() << "\n";
-        slot5.push(temp);
-    }
-    
-  //Tableau 6 
-  int tab6 [] = {5, 11, 16, 20, 23, 25};
-  tableau slot6;
-    for (const int& i : tab6) { 
-        card temp = playerDeck.at(i);
-       cout << "Tableau 6: Card" << i << " = " << temp.getCardValue() << "\n";
-        slot6.push(temp);
-    }
-    
-  //Tableau 7  
-  int tab7 [] = {6, 12, 17, 21, 24, 26, 27};
-  tableau slo;
-    for (const int& i : tab7) { 
-        card temp = playerDeck.at(i);
-        cout << "Tableau 7: Card" << i << " = " << temp.getCardValue() << "\n";
-        slot7.push(temp);
-   */
+
     //removes first 28 cards that were used for making tableaus
     for(int i = 0; i < 28; ++i)
     { 
         playerDeck.erase(playerDeck.begin()); 
     }
-    
     cout << "table is set up\n";
 }
 
@@ -279,6 +228,10 @@ int main(int argc, char *argv[]){
     game.newGame();
     game.setupTable();
     
+    for(int i = 0; i < table.size(); ++i){
+        cout << "size of table " << i << ": " << table.at(i).getCards().size() << " cards\n" ;
+    }
+    /*
     deckIndex = playerDeck.size()-1;
     cout << "deck index " << deckIndex << "\n";
     while(game.checkTimesCycled()){
@@ -296,5 +249,6 @@ int main(int argc, char *argv[]){
         cout << "endof whhile \n";
     }
     cout << "games won" << gamesWon << "\n";
+    */
     return 0; 
 }

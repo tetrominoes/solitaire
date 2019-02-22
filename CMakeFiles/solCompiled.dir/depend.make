@@ -10,7 +10,6 @@ CMakeFiles/solCompiled.dir/deck.cpp.o: deck.h
 
 CMakeFiles/solCompiled.dir/foundationPile.cpp.o: card.h
 CMakeFiles/solCompiled.dir/foundationPile.cpp.o: foundationPile.cpp
-CMakeFiles/solCompiled.dir/foundationPile.cpp.o: foundationPile.h
 CMakeFiles/solCompiled.dir/foundationPile.cpp.o: pile.h
 
 CMakeFiles/solCompiled.dir/pile.cpp.o: card.h
