@@ -171,7 +171,7 @@ void setupTable(){
     for(int k = i; k < 7; ++k){
       
       table.at(k).getCards().push_back(playerDeck.at(deckIndex));
-      
+      cout << "--single card--" << playerDeck.at(deckIndex).getCardValue() << "\n";
 	// access each table and add card at current index
 	++deckIndex; //increment to move to next working card
     }
@@ -182,6 +182,7 @@ void setupTable(){
     { 
         playerDeck.erase(playerDeck.begin()); 
     }
+    deckIndex = 0;
     cout << "table is set up\n";
 }
 
@@ -228,8 +229,8 @@ int main(int argc, char *argv[]){
     game.newGame();
     game.setupTable();
     
-    for(int i = 0; i < table.size(); ++i){
-        cout << "size of table " << i << ": " << table.at(i).getCards().size() << " cards\n" ;
+    for(int i = 0; i < 7; i++){
+        cout << "size of table" << ": "<< i << " "<< table.at(i).getCards().size() << " cards\n" ;
     }
     /*
     deckIndex = playerDeck.size()-1;

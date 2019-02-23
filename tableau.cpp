@@ -27,9 +27,11 @@ using namespace std;
         (potentialCard.getCardValue() == singleTableau.front().getCardValue()-1);
 
     }
-    vector<card> tableau::getCards(){
+    vector<card> & tableau::getCards(){
         return singleTableau;
     }
+    
+    
     // void placeCard(){
     //     if(pile.empty()){
     //         return;
