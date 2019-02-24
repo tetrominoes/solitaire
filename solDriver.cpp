@@ -159,70 +159,12 @@ class solDriver{
         for(int t = 0; t < table.size(); ++t){
             vector<card> singleTableau = table.at(t).getCards();
             int topOfStack = table.at(t).topOfTableau();
-            for(int o = 0; o < singleTableau.size(); ++o){
-               
+            if(addToTableau(singleTableau.at(topOfStack))){
+                //move rest of stack to whatever new tableau
             }
         }
     }
     
-    void 
-    // moving stacks of cards between tableaus
-    // from - location of target card | tableauIndexFrom location in its tableau
-    // to - destination of target card | tableauIndexTo destination of new tableau
-    void moveStackOfCards(int from, int to, int tableauIndexTo, int tableauIndexFrom){
-        //WHAT WE WANT TO MOVE
-        vector<card> cardsFrom = table.at(tableauIndexFrom).getCards();
-        //WHERE
-        vector<card> cards = table.at(tableauIndexTo).getCards();
-        for(int i = 0; i<to;i++){
-            cards.push_back(cardsFrom.at(from+i));
-        }
-         cardsFrom.erase(cards.begin()+from,cards.begin()+to);
-
-
- }
- 
-    void flipTopCards(){
-    for(int i = 0;i<7;i++){
-        vector<card> cards = table.at(i).getCards();
-        if(!cards.at(cards.size()-1).isFaceUp()){
-            cards.at(cards.size()-1).flip();
-         }
-    }
-}
-
-    //return if the game was completed before cycling 3 times thru deck
-    bool checkWin(){
-     int count = 0;
-      for(int i = 0; i<4;i++){
-          vector<card> cards = foundation.at(i).getCards();
-          if(cards.at(cards.size()-1).getCardValue() == 13)
-                count++;
-      }
-      if(count == 4){
-        return true;
-      }
-      return false;
- }
-    // check if cards from tableaus can go to foundation
-    void scanTableauToFoundation(){
-     int size;
-     for(int i = 0; i<7;i++){
-         vector<card> cards = table.at(i).getCards();
-
-            
-         size = cards.size()-1;
-        for(int j = 0; j<4;j++){
-            if(foundation.at(j).canReceieve(cards.at(size))){
-                card singleCard = cards.at(size);
-                cards.pop_back();
-                foundation.at(j).push(singleCard);
-                flipTopCards();
-            }
-        }
-     }
- }
- 
 
 };
 
@@ -233,7 +175,7 @@ int main(int argc, char *argv[]){
     game.newGame();
     game.setupTable();
     cout << "draw pile\n";
-    /*
+    /* debugging blocks dont uncomment 
     for(int j = 0; j < playerDeck.size(); ++j){
         playerDeck.at(j).printCard();
     }
@@ -277,9 +219,6 @@ int main(int argc, char *argv[]){
             ++timesCycled;
             deckIndex = 0;
         }
-        //game.tableuToFoundation();
-        //game.refreshTableau();
-        //++deckIndex;
         cout << "drew another card | " << playerDeck.size() << " cards remain\n";
         
     }
@@ -393,5 +332,30 @@ for(int i = 0; i < 7; i++){
         }
      }
      return moveCard;
+ }
+ 
+ 
+    //legacy code block
+    void flipTopCards(){
+    for(int i = 0;i<7;i++){
+        vector<card> cards = table.at(i).getCards();
+        if(!cards.at(cards.size()-1).isFaceUp()){
+            cards.at(cards.size()-1).flip();
+         }
+    }
+}
+    //legacy code block
+    //return if the game was completed before cycling 3 times thru deck
+    bool checkWin(){
+     int count = 0;
+      for(int i = 0; i<4;i++){
+          vector<card> cards = foundation.at(i).getCards();
+          if(cards.at(cards.size()-1).getCardValue() == 13)
+                count++;
+      }
+      if(count == 4){
+        return true;
+      }
+      return false;
  }
     */
