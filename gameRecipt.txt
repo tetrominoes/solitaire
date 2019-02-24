@@ -1,0 +1,66 @@
+Solitaire initialized
+beginning new game
+new game started
+--deck gen--
+--table is set up--
+draw pile
+Card: 0-D-11-0
+Card: 0-H-12-0
+Card: 1-S-8-0
+Card: 1-S-4-0
+Card: 0-H-10-0
+Card: 0-D-3-0
+Card: 1-C-1-0
+Card: 1-C-9-0
+Card: 0-H-8-0
+Card: 1-S-1-0
+Card: 0-D-5-0
+Card: 0-H-6-0
+Card: 1-C-13-0
+Card: 1-S-9-0
+Card: 1-S-3-0
+Card: 0-H-11-0
+Card: 0-H-5-0
+Card: 1-S-7-0
+Card: 1-C-10-0
+Card: 1-S-5-0
+Card: 0-D-2-0
+Card: 1-S-10-0
+Card: 1-C-5-0
+*****
+--tableau no. 0--
+Card: 1-S-11-1
+--tableau no. 1--
+Card: 0-D-12-0
+Card: 0-D-8-1
+--tableau no. 2--
+Card: 0-H-1-0
+Card: 1-S-12-0
+Card: 0-H-4-1
+--tableau no. 3--
+Card: 1-C-8-0
+Card: 0-H-2-0
+Card: 1-S-6-0
+Card: 1-C-7-1
+--tableau no. 4--
+Card: 1-C-6-0
+Card: 0-D-9-0
+Card: 0-D-4-0
+Card: 0-H-3-0
+Card: 1-C-12-1
+--tableau no. 5--
+Card: 0-D-1-0
+Card: 0-D-10-0
+Card: 1-C-2-0
+Card: 1-C-4-0
+Card: 1-C-3-0
+Card: 0-D-13-1
+--tableau no. 6--
+Card: 1-S-2-0
+Card: 0-D-7-0
+Card: 0-H-9-0
+Card: 1-S-13-0
+Card: 0-D-6-0
+Card: 1-C-11-0
+Card: 0-H-7-1
+############################################
