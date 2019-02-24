@@ -30,7 +30,13 @@ using namespace std;
     vector<card> & tableau::getCards(){
         return singleTableau;
     }
-    
+    int tableau::topOfTableau(){
+        for(int t = 0; t < singleTableau.size(); ++t){
+            if(singleTableau.at(t).isFaceUp()){
+                return t;
+            }
+        }
+    }
     
     // void placeCard(){
     //     if(pile.empty()){

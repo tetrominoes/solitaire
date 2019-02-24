@@ -5,7 +5,8 @@
 
 class foundationPile: public pile{
     public:
-    foundationPile();
-    bool canReceieve(card currentCard, pile foundPile);
-    std::vector<card> getCards();
+        std::vector<card> singleFoundation;
+        foundationPile();
+        bool canReceieve(card currentCard);
+        std::vector<card> & getCards();
 };

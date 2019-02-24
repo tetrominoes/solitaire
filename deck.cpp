@@ -25,7 +25,6 @@ using namespace std;
     }
     //Method to generate a new deck of cards. The deck consists of a standard deck of 52 cards, minus the Jokers.
     vector<card> deck::generateDeck(){
-        cout<<"--deck gen begin--\n";
         bool temp = false;
         //For each suit in the deck, generate all 13 cards.
         for(int i = 0; i<4;i++){
@@ -41,14 +40,14 @@ using namespace std;
                 cardsDeck.push_back(singleCard);
             }
         }
-        cout<<"--deck gen end--\n";
+        cout<<"--deck gen--\n";
         return cardsDeck;
     }
     //using fisher yates method algorthim to shuffle cards
     vector<card> deck::shuffle(){
         vector<card> shuffledcards;
         for(int n = cardsDeck.size() - 1; n> 0; --n){
-            int k = rand() % n + 1;
+            int k = rand() % n ;
 
             card temp = cardsDeck.at(k);
             shuffledcards.push_back(temp);

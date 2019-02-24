@@ -8,6 +8,8 @@ using namespace std;
     int cardValue;
     char suit;
     bool color;
+    //TRUE = BLACK
+    //FALSE = RED
     bool faceUp;
     
     //Card object, which represents a standard playing card in a deck. There are 52 cards (minues jokers) for the game of Solitaire.
