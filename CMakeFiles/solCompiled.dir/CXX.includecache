@@ -8,41 +8,25 @@
 
 /home/ec2-user/environment/card.h
 
-/home/ec2-user/environment/deck.h
-vector
--
-card.h
-/home/ec2-user/environment/card.h
-
-/home/ec2-user/environment/foundationPile.h
-pile.h
-/home/ec2-user/environment/pile.h
-vector
--
-
-/home/ec2-user/environment/pile.h
-card.h
-/home/ec2-user/environment/card.h
-vector
--
-
-/home/ec2-user/environment/solDriver.cpp
+/home/ec2-user/environment/deck.cpp
 iostream
 -
 vector
 -
-deck.h
-/home/ec2-user/environment/deck.h
-foundationPile.h
-/home/ec2-user/environment/foundationPile.h
-tableau.h
-/home/ec2-user/environment/tableau.h
 card.h
 /home/ec2-user/environment/card.h
-pile.h
-/home/ec2-user/environment/pile.h
+deck.h
+/home/ec2-user/environment/deck.h
+algorithm
+-
+iterator
+-
+random
+-
 
-/home/ec2-user/environment/tableau.h
+/home/ec2-user/environment/deck.h
 vector
 -
+card.h
+/home/ec2-user/environment/card.h
 

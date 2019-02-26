@@ -10,6 +10,7 @@ CMakeFiles/solCompiled.dir/deck.cpp.o: deck.h
 
 CMakeFiles/solCompiled.dir/foundationPile.cpp.o: card.h
 CMakeFiles/solCompiled.dir/foundationPile.cpp.o: foundationPile.cpp
+CMakeFiles/solCompiled.dir/foundationPile.cpp.o: foundationPile.h
 CMakeFiles/solCompiled.dir/foundationPile.cpp.o: pile.h
 
 CMakeFiles/solCompiled.dir/pile.cpp.o: card.h
@@ -17,6 +18,7 @@ CMakeFiles/solCompiled.dir/pile.cpp.o: pile.cpp
 CMakeFiles/solCompiled.dir/pile.cpp.o: pile.h
 
 CMakeFiles/solCompiled.dir/solDriver.cpp.o: card.h
+CMakeFiles/solCompiled.dir/solDriver.cpp.o: catch2.hpp
 CMakeFiles/solCompiled.dir/solDriver.cpp.o: deck.h
 CMakeFiles/solCompiled.dir/solDriver.cpp.o: foundationPile.h
 CMakeFiles/solCompiled.dir/solDriver.cpp.o: pile.h

@@ -206,6 +206,12 @@ tetrominoes_BINARY_DIR:STATIC=/home/ec2-user/environment
 //Value Computed by CMake
 tetrominoes_SOURCE_DIR:STATIC=/home/ec2-user/environment
 
+//Value Computed by CMake
+version_BINARY_DIR:STATIC=/home/ec2-user/environment
+
+//Value Computed by CMake
+version_SOURCE_DIR:STATIC=/home/ec2-user/environment
+
 
 ########################
 # INTERNAL cache entries
