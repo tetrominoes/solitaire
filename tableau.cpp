@@ -31,10 +31,10 @@ using namespace std;
         return singleTableau;
     }
     int tableau::topOfTableau(){
-        for(int t = 0; t < singleTableau.size(); ++t){
+        for(int t = 0; t < singleTableau.size(); t++){
             if(singleTableau.at(t).isFaceUp()){
-                return t;
-            }
+                 return t;
+             }
         }
     }
     

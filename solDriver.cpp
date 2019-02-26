@@ -6,6 +6,9 @@
 #include "card.h"
 #include "pile.h"
 
+//efine CATCH_CONFIG_MAIN
+#include "catch2.hpp"
+
 using namespace std;
 //using std::vector;
 //variables
@@ -28,12 +31,12 @@ class solDriver{
         
     }
     
-    void newGame(){
+    void newGame(int numShuff){
     cout << "new game started\n";
     deck gameCards;
-    
+    numShuff = (numShuff<1)? numShuff = 1: numShuff;
     playerDeck = gameCards.generateDeck();
-    playerDeck = gameCards.shuffle();
+    playerDeck = gameCards.shuffle(1);
     
     
 }
@@ -46,14 +49,19 @@ class solDriver{
   for(const int& i : makefaceup) { 
          playerDeck.at(i).flip();
     }
-    
-    for(int t = 0; t < 7; ++t){
+    foundation.reserve(4);
+    for(int nb = 0; nb<4;nb++){
+        foundationPile newPile;
+        foundation.push_back(newPile);
+    }
+    table.reserve(7);
+    for(int t = 0; t < 7; t++){
         tableau temp;
         table.push_back(temp);
     }
   //make tableaus hete and add to table
-  for( int i = 0; i < 7; ++i){
-    for(int k = i; k < 7; ++k){
+  for( int i = 0; i < 7; i++){
+    for(int k = i; k < 7; k++){
       
       table.at(k).getCards().push_back(playerDeck.at(deckIndex));
 	// access each table and add card at current index
@@ -62,9 +70,12 @@ class solDriver{
   }
 
     //removes first 28 cards that were used for making tableaus
-    for(int i = 0; i < 28; ++i)
+    for(int i = 0; i < 28; i++)
     { 
         playerDeck.erase(playerDeck.begin()); 
+    }
+    for(int k = 0; k < playerDeck.size(); k++){
+        playerDeck.at(k).flip();
     }
     deckIndex = 0;
     cout << "--table is set up--\n";
@@ -75,12 +86,9 @@ class solDriver{
         cout << "CARD >> FOUNDATION\n";
         
         for(int i = 0; i < foundation.size(); i++){
-            vector<card> singleFoundation = foundation.at(i).getCards();
-            int state = singleFoundation.back().getCardValue();
-            int addCardState = addCard.getCardValue();
             // add aces to foundation
-            if(singleFoundation.empty() && addCard.getCardValue() == 1){
-                if (!addCard.isFaceUp()){addCard.flip();}
+            if(foundation.at(i).getCards().empty() && addCard.getCardValue() == 1){
+                //if (!addCard.isFaceUp()){addCard.flip();}
                 switch (suit) { 
                     case 'S': foundation.at(0).getCards().push_back(addCard); 
                         break; 
@@ -95,38 +103,39 @@ class solDriver{
                 cout << "   added to foundation\n";
                 return true;
             }// add other cards
-            else if(addCardState - state == 1){ //remember to check that the 'front' card is flipped
-                addCard.flip();
-                switch (suit) { 
-                    case 'S': foundation.at(0).getCards().push_back(addCard);
-                        break; 
-                    case 'C': foundation.at(1).getCards().push_back(addCard);
-                        break;
-                    case 'D': foundation.at(2).getCards().push_back(addCard);
-                        break; 
-                    case 'H': foundation.at(3).getCards().push_back(addCard);
-                        break; 
-                }
+            else if(!foundation.at(i).getCards().empty()){
+                int val2 = addCard.getCardValue();
+ 
+                if(val2 - foundation.at(i).getCards().back().getCardValue() == 1){ //&& addCard.getSuit() == foundation.at(i).getCards().at(foundation.size()-1).getSuit()){ //remember to check that the 'front' card is flipped
+                    //if (!addCard.isFaceUp()){addCard.flip();}
+                    switch (suit) { 
+                        case 'S': foundation.at(0).getCards().push_back(addCard);
+                            break; 
+                        case 'C': foundation.at(1).getCards().push_back(addCard);
+                            break;
+                        case 'D': foundation.at(2).getCards().push_back(addCard);
+                            break; 
+                        case 'H': foundation.at(3).getCards().push_back(addCard);
+                            break; 
+                    }
                 cout << "   added to foundation\n";
                 return true;
+                }
             }
+            cout << "   !add to foundation\n";
+            return false;
         }
-        cout << "   !add to foundation\n";
-        return false;
     }
-
     bool addToTableau(card addCard){
         cout << "CARD >> TABLEAU \n";
         bool addCardColor = addCard.getColor();
         int addCardValue = addCard.getCardValue();
-        for(int i = 0; i < table.size(); i++){
-            vector<card> singleTableau = table.at(i).getCards();
-            int singleCardValue = singleTableau.back().getCardValue();
-            bool singleCardColor = singleTableau.back().getColor();
+        cout << "card recieved: "; addCard.printCard();
+        for(int i = 0; i < 7; i++){
             if(
-            singleTableau.back().isFaceUp() && 
-            addCardColor != singleCardColor && 
-            singleCardValue - addCardValue == 1)
+            table.at(i).getCards().back().isFaceUp() && 
+            addCardColor != table.at(i).getCards().back().getColor() && 
+            table.at(i).getCards().back().getCardValue() - addCardValue == 1)
             {
                 if (!addCard.isFaceUp()){addCard.flip();}
                 table.at(i).getCards().push_back(addCard);
@@ -141,10 +150,11 @@ class solDriver{
     void tableuToFoundation(){
         cout << "TABLEAU >> FOUNDATION\n";
         for(int i = 0; i < 7; i++){
-            vector<card> singleTableau = table.at(i).getCards();
-            card frontCard = singleTableau.front();
-            if(frontCard.isFaceUp() && addToFoundation(frontCard)){
-                table.at(i).getCards().erase(singleTableau.begin());
+            if(table.at(i).getCards().back().isFaceUp()){
+                if (addToFoundation(table.at(i).getCards().back())){
+                    table.at(i).getCards().erase(table.at(i).getCards().end());
+                    refreshTableau();
+                }
             }
         }
     }
@@ -152,81 +162,112 @@ class solDriver{
     void refreshTableau(){
         cout << "REFRESH TABLEAUS\n" ;
         for(int i = 0; i < 7; i++){
-            vector<card> singleTableau = table.at(i).getCards();
-            if(!singleTableau.back().isFaceUp()){
-                table.at(i).getCards().back().flip();
-                cout << "REFRESHED TABLEAU NO. " << i << "\n" ;
-            }
-            cout << "TABLEAUS ALREADY FRESH\n" ;
+            //vector<card> singleTableau = table.at(t).getCards();
+                if(!table.at(i).getCards().back().isFaceUp()){
+                    table.at(i).getCards().back().flip();
+                    cout << "REFRESHED TABLEAU NO. " << i << "\n" ;
+                }
         }
     }
 
     void tableauToTableau(){
         cout << "TABLEAU >> TABLEAU\n";
-        for(int t = 0; t < table.size(); ++t){
-            vector<card> singleTableau = table.at(t).getCards();
-            int topOfStack = table.at(t).topOfTableau();
-            if(addToTableau(singleTableau.at(topOfStack))){
+        for(int t = 0; t < 7; t++){
+            //vector<card> singleTableau = table.at(t).getCards();
+            //int topOfStack = table.at(t).topOfTableau();
+            if(!table.at(t).empty() && addToTableau(table.at(t).getCards().at(table.at(t).topOfTableau()))){
                 cout << "   moving tableau no. " << t << "\n";
-                for(int k = topOfStack; k < singleTableau.size(); ++k){
-                    addToTableau(singleTableau.at(k));
+                for(int k = table.at(t).topOfTableau(); k < table.at(t).getCards().size(); k++){
+                    cout << "   moving rest of tableau no. " << t << "\n";
+                    addToTableau(table.at(t).getCards().at(k));
                     //remove cards from current tableau
-                    table.at(t).getCards().erase();
+                    table.at(t).getCards().erase(table.at(t).getCards().end());
                 }
                 cout << "   moved tableau no. " << t << "\n";
                 refreshTableau();
             }else{
+                moveKings();
+                refreshTableau();
+                
                 cout << "   !move tableau\n";
             }
         }
     }
+    
+    void moveKings(){
+        cout << "moving kings\n";
+        for(int k = 0; k < 7; k++){
+            if(table.at(k).getCards().empty()){
+                for(int p = 0; p < 7; p++){
+                    if(k!=p){
+                    if (table.at(p).getCards().at(table.at(p).topOfTableau()).getCardValue() == 13){
+                        table.at(k).getCards().push_back(table.at(p).getCards().at(table.at(p).topOfTableau()));
+                        table.at(p).getCards().erase(table.at(p).getCards().begin() + table.at(p).topOfTableau());
+                        tableauToTableau();
+                    }//push_back(table.at(p).getCards(table.at(p).topOfTableau())
+                    }
+                }   
+            }
+        }
+    }
+    
+    void printState(){
+        string message;
+        string foundations;
+        for(int b = 0; b<4;b++){
+            vector<card> foundationCards = foundation.at(b).getCards();
+            for(int a = 0; a<foundationCards.size();a++){
+               foundations = foundations + foundationCards.at(a).getSuit() + to_string(foundationCards.at(a).getCardValue())+foundationCards.at(a).getFaceUp()+" ";
+            }
+        cout<< "Foundation "<< to_string(b+1) <<" "<< foundations<<"\n";
+        foundations = "";
+        }
+
+        for(int i = 0;i<7;i++){
+            vector<card> currentCards = table.at(i).getCards();
+            for(int j = 0;j<currentCards.size();j++){
+                message = message+ " " + currentCards.at(j).getSuit() + to_string(currentCards.at(j).getCardValue()) + currentCards.at(j).getFaceUp()+" ";
+            }
+            cout<<"Tableau "<< i+1<< " " << message<<"\n";
+            message ="";
+        }
+    string remaining;
+    for(int q = 0; q<playerDeck.size();q++){
+        remaining = remaining + playerDeck.at(q).getSuit()+to_string(playerDeck.at(q).getCardValue())+ " ";
+        
+    }
+    cout<< remaining;
+    }
+
 };
 
 int main(int argc, char *argv[]){
     cout << "Solitaire initialized\n";
     cout << "beginning new game\n";
+    int victories;
     solDriver game;
-    game.newGame();
+    game.newGame(4);
     game.setupTable();
-    /*cout << "draw pile\n";
-     debugging blocks dont uncomment 
-    for(int j = 0; j < playerDeck.size(); ++j){
-        playerDeck.at(j).printCard();
-    }
-    cout << "*****\n";
-     //print cards in tableau
-        for(int i = 0; i < 7; i++){
-        vector<card> temp = table.at(i).getCards();
-        cout << "--tableau no. " << i << "--\n";
-        for(int j  = 0; j < temp.size(); ++j){
-            temp.at(j).printCard();
-        }
-    }
-    for(int i = 0; i < 7; i++){
-        vector<card> temp = table.at(i).getCards();
-        cout << "--tableau no. " << i << "--\n";
-        for(int j  = 0; j < temp.size(); ++j){
-            cout << "front of tableu: ";
-            temp.front().printCard();
-        }
-    } */
+    game.printState();
+    cout << "draw pile\n";
+
     cout << "--game started--\n";
-    while(timesCycled <= 3){
+    while(timesCycled <= 3 ){
         cout << "active index: "<< deckIndex<< " :: "; playerDeck.at(deckIndex).printCard();
         card playerCard = playerDeck.at(deckIndex);
+        game.printState();
         game.tableauToTableau();
-        //game.refreshTableau();
+        game.printState();
+        game.refreshTableau();
+        game.printState();
         game.tableuToFoundation();
+        game.printState();
 
-        if(game.addToTableau(playerCard)){
-            playerDeck.erase(playerDeck.begin());
+        if(game.addToFoundation(playerCard) || game.addToTableau(playerCard)){
+            playerDeck.erase(playerDeck.begin() + deckIndex);
             deckIndex--;
             
-        }else if(game.addToFoundation(playerCard)){
-            playerDeck.erase(playerDeck.begin());
-            deckIndex--;
-        }
-        else{
+        }else{
             deckIndex++;
         }
         if(deckIndex >= playerDeck.size()){
@@ -236,26 +277,9 @@ int main(int argc, char *argv[]){
         cout << "drew another card | " << playerDeck.size() << " cards remain\n";
         
     }
+    cout<< "END\n";
     
-    /*
-    deckIndex = playerDeck.size()-1;
-    cout << "deck index " << deckIndex << "\n";
-    while(game.checkTimesCycled()){
-        cout << "start whhile \n";
-        if(game.checkWin())
-        {
-            gamesWon++;
-            cout << "games won";
-        }
-        game.flipTopCards();
-        game.scanTableauToFoundation();
-        game.scanDrawPileToFoundation();
-        game.checkOpenTableau();
-        game.checkCardFromDeck();
-        cout << "endof whhile \n";
-    }
-    cout << "games won" << gamesWon << "\n";
-    */
+    
     return 0; 
 }
 

@@ -23,6 +23,7 @@ using namespace std;
         //method printCard: Prints all card attribute information to output.
         void card::printCard(){
             cout<<"Card: " << color<< "-" << suit << "-"<< cardValue<< "-"<< faceUp<<"\n";
+            
         }
         //method getSuit: returns the char representing the suit of the card.
         char card::getSuit(){
@@ -52,7 +53,12 @@ using namespace std;
             return faceUp;
         }
         void card::flip(){
-            faceUp = !faceUp;
+            faceUp = true;
         }
         
+        char card::getFaceUp(){
+            if(faceUp==true)
+                return 'Y';
+            return 'N';
+        }
 

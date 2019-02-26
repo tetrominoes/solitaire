@@ -44,15 +44,23 @@ using namespace std;
         return cardsDeck;
     }
     //using fisher yates method algorthim to shuffle cards
-    vector<card> deck::shuffle(){
-        vector<card> shuffledcards;
-        for(int n = cardsDeck.size() - 1; n> 0; --n){
+    vector<card> deck::shuffle(int numShuff){
+        vector<card> shuffledcards = cardsDeck;
+        
+        for(int n = 52 - 1; n> 0; --n){
             int k = rand() % n ;
 
-            card temp = cardsDeck.at(k);
+            card temp = shuffledcards.at(k);
             shuffledcards.push_back(temp);
-            cardsDeck.erase(cardsDeck.begin() + k);
+            shuffledcards.erase(shuffledcards.begin() + k);
         }
+        shuffledcards.push_back(shuffledcards.at(0));
+        
+    /*for(int i = 0; i < shuffledcards.size();i++)
+         {
+        cout<<i+1;
+        shuffledcards.at(i).printCard();
+         }*/
         return shuffledcards;
     }
     
@@ -61,14 +69,14 @@ using namespace std;
 
 
 /*int main(){
-    Deck deck;
+    deck deck;
     vector<card> cards = deck.generateDeck();
     cards = deck.shuffle();
     cout << "cards shuffled";
 
-    for(int i = 0; i < cards.size();i++)
-    {
-        cards.at(i).printcard();
-    }
+    //for(int i = 0; i < cards.size();i++)
+   // {
+   //     cards.at(i).printcard();
+   // }
 
-}**/
+}*/

@@ -26,4 +26,5 @@ class card{
         void setCardValue(int newCardValue);
         bool isFaceUp();
         void flip();
+        char getFaceUp();
 };

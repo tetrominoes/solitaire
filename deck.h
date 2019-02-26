@@ -8,6 +8,6 @@ class deck{
     public:
     deck();
     std::vector<card> generateDeck();
-    std::vector<card> shuffle();
-    
+    std::vector<card> shuffle(int numShuff);
+
 };
