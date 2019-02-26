@@ -8,7 +8,7 @@
 //#include "catch2.hpp"
 
 //efine CATCH_CONFIG_MAIN
-#include "catch2.hpp"
+//#include "catch2.hpp"
 
 using namespace std;
 //using std::vector;
@@ -201,16 +201,19 @@ class solDriver{
     }
     
     void moveKings(){
-        cout << "moving kings\n";
+	    cout << "moving kings\n";
         for(int k = 0; k < 7; k++){
             if(table.at(k).getCards().empty()){
                 for(int p = 0; p < 7; p++){
                     if(k!=p){
                     if (table.at(p).getCards().at(table.at(p).topOfTableau()).getCardValue() == 13){
                         table.at(k).getCards().push_back(table.at(p).getCards().at(table.at(p).topOfTableau()));
-                        table.at(p).getCards().erase(table.at(p).getCards().begin() + table.at(p).topOfTableau());
-                        tableauToTableau();
-                    }//push_back(table.at(p).getCards(table.at(p).topOfTableau())
+                        //table.at(p).getCards().erase(table.at(p).getCards().begin() + table.at(p).topOfTableau());
+                        vector<card> temp = table.at(p).getCards();
+			for(int m = table.at(p).getCards().topOfTableau(); m < table.at(p).getCards().size(); m++){
+	table.at(k).getCards().push_back(temp.at(m);
+	table.at(p).getCards().erase(table.at(p).getCards().end());
+                    }
                     }
                 }   
             }
