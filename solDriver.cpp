@@ -5,6 +5,7 @@
 #include "tableau.h"
 #include "card.h"
 #include "pile.h"
+//#include "catch2.hpp"
 
 //efine CATCH_CONFIG_MAIN
 #include "catch2.hpp"
@@ -37,6 +38,7 @@ class solDriver{
     numShuff = (numShuff<1)? numShuff = 1: numShuff;
     playerDeck = gameCards.generateDeck();
     playerDeck = gameCards.shuffle(1);
+
     
     
 }
@@ -126,11 +128,14 @@ class solDriver{
             return false;
         }
     }
+
     bool addToTableau(card addCard){
+        
         cout << "CARD >> TABLEAU \n";
         bool addCardColor = addCard.getColor();
         int addCardValue = addCard.getCardValue();
         cout << "card recieved: "; addCard.printCard();
+
         for(int i = 0; i < 7; i++){
             if(
             table.at(i).getCards().back().isFaceUp() && 
@@ -150,6 +155,7 @@ class solDriver{
     void tableuToFoundation(){
         cout << "TABLEAU >> FOUNDATION\n";
         for(int i = 0; i < 7; i++){
+
             if(table.at(i).getCards().back().isFaceUp()){
                 if (addToFoundation(table.at(i).getCards().back())){
                     table.at(i).getCards().erase(table.at(i).getCards().end());
@@ -250,7 +256,6 @@ int main(int argc, char *argv[]){
     game.setupTable();
     game.printState();
     cout << "draw pile\n";
-
     cout << "--game started--\n";
     while(timesCycled <= 3 ){
         cout << "active index: "<< deckIndex<< " :: "; playerDeck.at(deckIndex).printCard();
@@ -266,7 +271,6 @@ int main(int argc, char *argv[]){
         if(game.addToFoundation(playerCard) || game.addToTableau(playerCard)){
             playerDeck.erase(playerDeck.begin() + deckIndex);
             deckIndex--;
-            
         }else{
             deckIndex++;
         }
@@ -274,126 +278,11 @@ int main(int argc, char *argv[]){
             ++timesCycled;
             deckIndex = 0;
         }
+        
         cout << "drew another card | " << playerDeck.size() << " cards remain\n";
         
     }
     cout<< "END\n";
     
-    
     return 0; 
 }
-
-/*
-method to check cards in piles
-for(int i = 0; i < 7; i++){
-        cout << "size of table" << ": "<< i << " "<< table.at(i).getCards().size() << " cards\n" ;
-    }
-
-*/
-
-// legacy code
-/*
-    // check card
-    void checkCardFromDeck(){
-     if(deckIndex<-1){
-         timesCycled++;
-         deckIndex = 0;
-     }
-     else{
-        deckIndex++;
-     }
-     //Check Foundation
-     for(int i = 0;i<4;i++){
-         if(foundation.at(i).canReceieve(playerDeck.at(deckIndex),foundation.at(i))){
-             foundation.at(i).push(playerDeck.at(deckIndex));
-             playerDeck.erase(playerDeck.begin()+deckIndex);
-             deckIndex--;
-         }
-     }
-    //CHECK TABLEAU
-     for(int j = 0; j<7;j++){
-         if(table.at(j).canRecieve(playerDeck.at(deckIndex))){
-             table.at(j).push(playerDeck.at(deckIndex));
-             playerDeck.erase(playerDeck.begin()+deckIndex);
-             deckIndex--;
-            }
-        }
-    }
-    // check if current card from draw pile can go to foundation
-    void scanDrawPileToFoundation(){
-     for(int i = 0; i<4;i++){
-        if(foundation.at(i).canReceieve(playerDeck.at(deckIndex),foundation.at(i)))
-        {
-            card singleCard = playerDeck.at(deckIndex);
-            playerDeck.erase(playerDeck.begin()+deckIndex);
-            foundation.at(i).push(singleCard);
-        }
-     }
- }
-    // check if a tableau is open to recieve a card
-    bool checkOpenTableau(){
-     int size;
-     int x=0;
-     bool faceUp = true;
-     bool moveCard = false;
-     //LOOP THROUGH WHOLE TABLE
-     for(int i = 0; i < 7; i++){
-         vector<card> cards = table.at(i).getCards();
-         size = cards.size();
-         //FINDS # OF FACEUP IN COLUMN
-         for(int j = 0;j<size;j++){
-             if(cards.at(j).isFaceUp()){
-                x++;
-             }
-             else
-                break;
-         }
-         //FOR EACH FACEUP CARD
-        for(int k = x; k >= 0; --k){
-            //FOR EACH 'OTHER COLUMN'
-            for(int q = 0;q<7;q++){
-                //not equal column
-                if(i!=q){
-                    //
-                    if(table.at(q).canRecieve(cards.at(size-k)))
-                    {
-                        //vector<Card> toAdd = vector<Card>(cards.begin()+size-k, cards.begin()+size-1);
-                        moveStackOfCards(size-k,size-1,q,i);
-                        flipTopCards();
-                        k=-1;
-                        q=7;
-                        //yikes
-                        moveCard = true;
-                    }
-                }
-            }
-        }
-     }
-     return moveCard;
- }
- 
- 
-    //legacy code block
-    void flipTopCards(){
-    for(int i = 0;i<7;i++){
-        vector<card> cards = table.at(i).getCards();
-        if(!cards.at(cards.size()-1).isFaceUp()){
-            cards.at(cards.size()-1).flip();
-         }
-    }
-}
-    //legacy code block
-    //return if the game was completed before cycling 3 times thru deck
-    bool checkWin(){
-     int count = 0;
-      for(int i = 0; i<4;i++){
-          vector<card> cards = foundation.at(i).getCards();
-          if(cards.at(cards.size()-1).getCardValue() == 13)
-                count++;
-      }
-      if(count == 4){
-        return true;
-      }
-      return false;
- }
-    */
