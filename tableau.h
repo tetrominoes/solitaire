@@ -1,8 +1,8 @@
 #pragma once
 //#include "pile.h"
 #include <vector>
-
-class tableau : public pile{
+#include "card.h"
+class tableau{
     public:
         std::vector<card> singleTableau;
         bool canRecieve(card aCard);

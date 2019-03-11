@@ -19,6 +19,7 @@
 using namespace std;
 
 
+
     char SUITS[4] = {'S','C','D','H'};
     int VALUES[13]= {1,2,3,4,5,6,7,8,9,10,11,12,13};
     bool COLORS[2] = {true,false};
@@ -31,8 +32,8 @@ using namespace std;
      * Establish each card in the deck.
      * 
  */
+
     deck::deck(){
-        
     }
     
 /**
@@ -41,15 +42,18 @@ using namespace std;
      * 
      * @return cardsDeck : a vector of cards representing our generated deck
  */
+
     vector<card> deck::generateDeck(){
         bool temp = false;
         //For each suit in the deck, generate all 13 cards.
         for(int i = 0; i<4;i++){
             char currentSuit = SUITS[i];
+            //assign the color to the card depending on its suit
             if(i<2)
                 temp = true;
             else
                 temp = false;
+            //for all 13 cards in each suit, assign a new card its value, suit, and faceUp status. Push the card into the deck.
             for(int j = 0; j<13;j++){
                 int cardValue = VALUES[j];
                 
@@ -133,9 +137,6 @@ using namespace std;
         }
          return w;
     }
-
-
-
 
 /*int main(){
     deck deck;

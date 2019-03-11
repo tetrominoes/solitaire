@@ -6,12 +6,10 @@
     @version 1.0 Feb. 2019
 */
 #include <iostream>
-#include "pile.h"
+//#include "pile.h"
 #include <vector>
 #include "tableau.h"
-using namespace std;
-
-
+#include "card.h"
 
     //being to phase out pile
     //pile singlePile;
