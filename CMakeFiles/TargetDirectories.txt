@@ -1,0 +1,3 @@
+/home/ec2-user/environment/CMakeFiles/rebuild_cache.dir
+/home/ec2-user/environment/CMakeFiles/edit_cache.dir
+/home/ec2-user/environment/CMakeFiles/solCompiled.dir
