@@ -139,12 +139,24 @@ TEST_CASE( "Deck has been shuffled" ) {
 */
 //Card can be moved from tableau to foundation only when same suit/ascending order
 TEST_CASE( "tableau to foundation", "[classic]" ) {
-    game.newGame();
-    game.setupTable();
-    
+    foundationPile foundation();
+    tableau tableau();
+    card ace (1,'S',TRUE);
+    tableau.push_back(ace);
+    foundation.push_back(tableau.topOfTableau());
+    REQUIRE(foundation.topCard() == ace);
        
 }
 //Card can be moved from foundation to Tableau only when opposite color/descending order
+TEST_CASE( "foundation to tableau", "[classic]" ) {
+    foundationPile foundation();
+    tableau tableau();
+    card ace (1,'S',TRUE);
+    tableau.push_back(ace);
+    foundation.push_back(tableau.topOfTableau());
+    REQUIRE(foundation.topCard() == ace);
+       
+}
 //Draw Pile created from rest of cards
 //Top card of draw pile can be flipped
 //Top card from Draw Pile can be moved into foundation only when same suit/ascending order

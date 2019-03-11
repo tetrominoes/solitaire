@@ -1,66 +1,180 @@
+   _____       ___ __        _         
+  / ___/____  / (_) /_____ _(_)_______ 
+  \__ \/ __ \/ / / __/ __ `/ / ___/ _ \ 
+ ___/ / /_/ / / / /_/ /_/ / / /  /  __/
+/____/\____/_/_/\__/\__,_/_/_/   \___/ 
 Solitaire initialized
 beginning new game
+--game started--0 
 new game started
---deck gen--
---table is set up--
-draw pile
-Card: 0-D-11-0
-Card: 0-H-12-0
-Card: 1-S-8-0
-Card: 1-S-4-0
-Card: 0-H-10-0
-Card: 0-D-3-0
-Card: 1-C-1-0
-Card: 1-C-9-0
-Card: 0-H-8-0
-Card: 1-S-1-0
-Card: 0-D-5-0
-Card: 0-H-6-0
-Card: 1-C-13-0
-Card: 1-S-9-0
-Card: 1-S-3-0
-Card: 0-H-11-0
-Card: 0-H-5-0
-Card: 1-S-7-0
-Card: 1-C-10-0
-Card: 1-S-5-0
-Card: 0-D-2-0
-Card: 1-S-10-0
-Card: 1-C-5-0
-*****
---tableau no. 0--
-Card: 1-S-11-1
---tableau no. 1--
-Card: 0-D-12-0
-Card: 0-D-8-1
---tableau no. 2--
-Card: 0-H-1-0
-Card: 1-S-12-0
-Card: 0-H-4-1
---tableau no. 3--
-Card: 1-C-8-0
-Card: 0-H-2-0
-Card: 1-S-6-0
-Card: 1-C-7-1
---tableau no. 4--
-Card: 1-C-6-0
-Card: 0-D-9-0
-Card: 0-D-4-0
-Card: 0-H-3-0
-Card: 1-C-12-1
---tableau no. 5--
-Card: 0-D-1-0
-Card: 0-D-10-0
-Card: 1-C-2-0
-Card: 1-C-4-0
-Card: 1-C-3-0
-Card: 0-D-13-1
---tableau no. 6--
-Card: 1-S-2-0
-Card: 0-D-7-0
-Card: 0-H-9-0
-Card: 1-S-13-0
-Card: 0-D-6-0
-Card: 1-C-11-0
-Card: 0-H-7-1
-############################################
+Foundation 0 
+Foundation 1 
+Foundation 2 
+Foundation 3 
+Tableau 1  S5Y 
+Tableau 2  H13N  D11Y 
+Tableau 3  S12N  D1N  S3Y 
+Tableau 4  C3N  H12N  H9N  D7Y 
+Tableau 5  C12N  D8N  H11N  H2N  S8Y 
+Tableau 6  D10N  H1N  C13N  S6N  S13N  H4Y 
+Tableau 7  C5N  C7N  C6N  C9N  C2N  D2N  S7Y 
+PLAYER DECK PRINTED H7 H6 D5 D13 C1 D12 S4 C4 D4 H5 S10 C10 S9 C11 C8 D9 S2 S11 D6 S1 H8 H3 H10 D3 
+Foundation 0 S1Y S2Y S3Y 
+Foundation 1 C1Y 
+Foundation 2 D1Y 
+Foundation 3 
+Tableau 1  S5Y  D4Y 
+Tableau 2  H13N  D11Y  S10Y  D9Y  C8Y 
+Tableau 3  S12Y 
+Tableau 4  C3N  H12N  H9N  D7Y 
+Tableau 5  C12N  D8N  H11N  H2N  S8Y  H7Y 
+Tableau 6  D10N  H1N  C13N  S6N  S13N  H4Y 
+Tableau 7  C5N  C7N  C6N  C9N  C2N  D2N  S7Y  H6Y 
+PLAYER DECK PRINTED D5 D13 D12 S4 C4 H5 C10 S9 C11 S11 D6 H8 H3 H10 D3 
+game reset
+--game started--1 
+new game started
+Foundation 0 
+Foundation 1 
+Foundation 2 
+Foundation 3 
+Tableau 1  D2Y 
+Tableau 2  S10N  D5Y 
+Tableau 3  S8N  H5N  H2Y 
+Tableau 4  C5N  H12N  C12N  H3Y 
+Tableau 5  H8N  C4N  D7N  H6N  C10Y 
+Tableau 6  C13N  C2N  S13N  D4N  C3N  C1Y 
+Tableau 7  S3N  H7N  C7N  C9N  D8N  D3N  S4Y 
+PLAYER DECK PRINTED H4 D1 S1 S5 C6 D12 S12 D13 S7 D6 C8 H11 S2 D9 H9 D11 S6 D10 H13 S9 H1 H10 C11 S11 
+Foundation 0 S1Y S2Y 
+Foundation 1 C1Y 
+Foundation 2 D1Y D2Y 
+Foundation 3 H1Y H2Y H3Y H4Y H5Y 
+Tableau 1 
+Tableau 2  S10N  D5Y 
+Tableau 3  S8Y 
+Tableau 4  C5N  H12N  C12Y  H11Y 
+Tableau 5  H8N  C4N  D7N  H6N  C10Y  D9Y  C8Y 
+Tableau 6  C13N  C2N  S13N  D4N  C3Y 
+Tableau 7  S3N  H7N  C7N  C9N  D8N  D3N  S4Y 
+PLAYER DECK PRINTED S5 C6 D12 S12 D13 S7 D6 H9 D11 S6 D10 H13 S9 H10 C11 S11 
+game reset
+--game started--2 
+new game started
+Foundation 0 
+Foundation 1 
+Foundation 2 
+Foundation 3 
+Tableau 1  D7Y 
+Tableau 2  S3N  H9Y 
+Tableau 3  S1N  C1N  S12Y 
+Tableau 4  C2N  C7N  H3N  S4Y 
+Tableau 5  C9N  S7N  D6N  D3N  H1Y 
+Tableau 6  S11N  D12N  S8N  S10N  D13N  C8Y 
+Tableau 7  H10N  H2N  D11N  H7N  H4N  D1N  S2Y 
+PLAYER DECK PRINTED H5 C5 C6 D8 S9 H6 S5 D2 C13 D4 S6 C12 H8 D5 H11 C11 C3 D10 H13 C4 H12 C10 S13 D9 
+Foundation 0 
+Foundation 1 
+Foundation 2 
+Foundation 3 H1Y 
+Tableau 1  D7Y  C6Y  D5Y  C4Y 
+Tableau 2  S3N  H9Y 
+Tableau 3  S1N  C1N  S12Y  H11Y  C10Y  D9Y 
+Tableau 4  C2N  C7N  H3N  S4Y 
+Tableau 5  C9N  S7N  D6N  D3Y 
+Tableau 6  S11N  D12N  S8N  S10N  D13N  C8Y 
+Tableau 7  H10N  H2N  D11N  H7N  H4N  D1N  S2Y 
+PLAYER DECK PRINTED H5 C5 D8 S9 H6 S5 D2 C13 D4 S6 C12 H8 C11 C3 D10 H13 H12 S13 
+game reset
+--game started--3 
+new game started
+Foundation 0 
+Foundation 1 
+Foundation 2 
+Foundation 3 
+Tableau 1  D1Y 
+Tableau 2  H11N  D5Y 
+Tableau 3  H10N  S12N  C1Y 
+Tableau 4  C5N  C12N  D7N  S10Y 
+Tableau 5  H13N  S6N  C6N  D4N  D12Y 
+Tableau 6  H3N  D3N  D6N  S4N  H1N  C11Y 
+Tableau 7  C13N  H12N  C4N  H9N  D13N  C7N  H6Y 
+PLAYER DECK PRINTED S2 H5 D9 D2 S5 D8 S13 C8 S11 D10 C2 S3 S7 H2 C10 C3 S8 H7 S1 H8 C9 D11 H4 S9 
+Foundation 0 S1Y S2Y S3Y 
+Foundation 1 C1Y C2Y C3Y 
+Foundation 2 D1Y D2Y 
+Foundation 3 
+Tableau 1 
+Tableau 2  H11N  D5Y 
+Tableau 3  H10N  S12Y  D11Y  C10Y 
+Tableau 4  C5N  C12N  D7N  S10Y  D9Y  C8Y  H7Y 
+Tableau 5  H13N  S6N  C6N  D4N  D12Y  S11Y  D10Y  C9Y  H8Y  S7Y 
+Tableau 6  H3N  D3N  D6N  S4N  H1N  C11Y 
+Tableau 7  C13N  H12N  C4N  H9N  D13N  C7N  H6Y  S5Y  H4Y 
+PLAYER DECK PRINTED H5 D8 S13 H2 S8 S9 
+game reset
+--game started--4 
+new game started
+Foundation 0 
+Foundation 1 
+Foundation 2 
+Foundation 3 
+Tableau 1  H7Y 
+Tableau 2  D13N  C2Y 
+Tableau 3  D11N  S8N  D12Y 
+Tableau 4  C10N  H13N  H9N  H1Y 
+Tableau 5  H11N  C6N  C1N  D3N  D1Y 
+Tableau 6  C3N  S11N  C7N  D5N  C4N  H3Y 
+Tableau 7  D7N  H10N  S7N  H4N  D10N  S3N  D9Y 
+PLAYER DECK PRINTED S1 S6 C12 S10 S13 S9 H2 H8 S2 D2 D8 D6 C11 C8 H12 C9 S4 S5 S12 C5 D4 H6 C13 H5 
+Foundation 0 S1Y S2Y 
+Foundation 1 C1Y C2Y 
+Foundation 2 D1Y D2Y D3Y D4Y 
+Foundation 3 H1Y H2Y H3Y 
+Tableau 1  H7Y  S6Y  H5Y  S4Y 
+Tableau 2  D13Y  S12Y 
+Tableau 3  D11N  S8N  D12Y  C11Y 
+Tableau 4  C10N  H13N  H9Y  C8Y 
+Tableau 5  H11N  C6Y 
+Tableau 6  C3N  S11N  C7N  D5N  C4Y 
+Tableau 7  D7N  H10N  S7N  H4N  D10N  S3N  D9Y 
+PLAYER DECK PRINTED C12 S10 S13 S9 H8 D8 D6 H12 C9 S5 C5 H6 C13 
+game reset
+victories :: 0
+losses :: 5
+   _____       ___ __        _         
+  / ___/____  / (_) /_____ _(_)_______ 
+  \__ \/ __ \/ / / __/ __ `/ / ___/ _ \ 
+ ___/ / /_/ / / / /_/ /_/ / / /  /  __/
+/____/\____/_/_/\__/\__,_/_/_/   \___/ 
+Solitaire initialized
+beginning new game
+--game no . started-- 
+new game started
+Foundation 0 
+Foundation 1 
+Foundation 2 
+Foundation 3 
+Tableau 1  S1Y 
+Tableau 2  S3N  S2Y 
+Tableau 3  S6N  S5N  S4Y 
+Tableau 4  S10N  S9N  S8N  S7Y 
+Tableau 5  C2N  C1N  S13N  S12N  S11Y 
+Tableau 6  C8N  C7N  C6N  C5N  C4N  C3Y 
+Tableau 7  D2N  D1N  C13N  C12N  C11N  C10N  C9Y 
+PLAYER DECK PRINTED D3 D4 D5 D6 D7 D8 D9 D10 D11 D12 D13 H1 H2 H3 H4 H5 H6 H7 H8 H9 H10 H11 H12 H13 
+Foundation 0 S1Y S2Y S3Y S4Y S5Y S6Y S7Y S8Y S9Y S10Y S11Y S12Y S13Y 
+Foundation 1 C1Y C2Y C3Y C4Y C5Y C6Y C7Y C8Y C9Y C10Y C11Y C12Y C13Y 
+Foundation 2 D1Y D2Y D3Y D4Y D5Y D6Y 
+Foundation 3 
+Tableau 1 
+Tableau 2 
+Tableau 3 
+Tableau 4 
+Tableau 5 
+Tableau 6 
+Tableau 7 
+PLAYER DECK PRINTED D7 D8 D9 D10 D11 D12 D13 H1 H2 H3 H4 H5 H6 H7 H8 H9 H10 H11 H12 H13 
+game reset
+victories :: 0
+losses :: 1
