@@ -10,7 +10,7 @@
 #include <vector>
 #include "tableau.h"
 #include "card.h"
-
+using namespace std;
     //being to phase out pile
     //pile singlePile;
 
