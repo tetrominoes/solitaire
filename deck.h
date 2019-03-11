@@ -9,5 +9,6 @@ class deck{
     deck();
     std::vector<card> generateDeck();
     std::vector<card> shuffle(int numShuff);
+    std::vector<card> winDeck();
 
 };

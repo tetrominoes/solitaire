@@ -1,7 +1,10 @@
+/**
+    tableau.cpp
+    Purpose: Represent a tableau of cards: The tableau is the "playing space" of the Solitaire game
 
-//Class to represent the Tableau pile in solitaire.
-
-
+    @author tetrominoes
+    @version 1.0 Feb. 2019
+*/
 #include <iostream>
 #include "pile.h"
 #include <vector>
@@ -15,10 +18,23 @@ using namespace std;
 
     vector<card> singleTableau;
 
+/**
+     * tableau::tableau()
+     * Establish the tableau of cards
+     * 
+ */
     tableau::tableau(){
         
     }
 
+/**
+     * canRecieve()
+     * Method to determine if the tableau pile can recieve a given card
+     * 
+     * @param card potentialCard: the card to be recieved
+
+     * @return bool true if card can be recieved
+ */
     bool tableau::canRecieve(card potentialCard){
         if(singleTableau.empty()){
             return (potentialCard.getCardValue() == 13);
@@ -27,15 +43,32 @@ using namespace std;
         (potentialCard.getCardValue() == singleTableau.front().getCardValue()-1);
 
     }
+    
+/**
+     * getCards()
+     * Returns the cards in the tableau pile
+     * 
+
+     * @return vector<card> singleTableau: the vector of cards representing the pile
+ */    
     vector<card> & tableau::getCards(){
         return singleTableau;
     }
+    
+/**
+     * topOfTableau()
+     * Return the index of the card at athe topof the tableau
+     * 
+
+     * @return int t
+ */    
     int tableau::topOfTableau(){
         for(int t = 0; t < singleTableau.size(); t++){
             if(singleTableau.at(t).isFaceUp()){
                  return t;
              }
         }
+        
     }
     
     // void placeCard(){
