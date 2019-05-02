@@ -11,8 +11,10 @@
 #include "tableau.h"
 #include "card.h"
 #include "pile.h"
+#include <chrono> 
 
 using namespace std;
+using namespace std::chrono; 
 
 //variables
 int numGames = 0;
@@ -26,6 +28,7 @@ int gamesWon = 0;
 bool gameCompleted = false;
 double winPercentage;
 deck gameCards;
+int numberOfMoves;
 
 /**
      * class solDriver()
@@ -111,7 +114,7 @@ class solDriver{
     deckIndex = 0;
     //cout << "--table is set up--\n";
     cout << "### PRE - GAME ###\n";
-    printState();
+    //printState();
 }  
 
 /**
@@ -148,6 +151,7 @@ class solDriver{
                 }
                 
                 //cout << "   added to foundation\n";
+                numberOfMoves++;
                 return true;
             }// add other cards
             
@@ -172,6 +176,7 @@ class solDriver{
                     }
 
                 //cout << "   added to foundation\n";
+                numberOfMoves++;
                 return true;
                 }
             }
@@ -195,7 +200,7 @@ class solDriver{
         bool addCardColor = addCard.getColor();
         int addCardValue = addCard.getCardValue();
         //cout << "card recieved: "; addCard.printCard();
-
+        //printState();
         for(int i = 0; i < 7; i++){
             
             if(
@@ -208,6 +213,7 @@ class solDriver{
                     addCard.flip();
                 }
                 table.at(i).getCards().push_back(addCard);
+                numberOfMoves++;
                 //cout << "   added to tableau no. " << i << "\n";
                 return true;
             }
@@ -239,6 +245,7 @@ class solDriver{
                 if (addToFoundation(table.at(i).getCards().back())){ 
                     table.at(i).getCards().erase(table.at(i).getCards().end());
                     refreshTableau();
+                    numberOfMoves++;
                     //cout<<"here\n";
                     //printState();
                     return true;
@@ -272,18 +279,31 @@ class solDriver{
  * Move cards from a tableau to another tableau
 
  */
+ //TO-DO
     void tableauToTableau(){
         //cout << "TABLEAU >> TABLEAU\n";
         for(int t = 0; t < 7; t++){
-            
+            //cout<<t<<" column\n";
+            //printState();
             if(!table.at(t).getCards().empty() && addToTableau(table.at(t).getCards().at(table.at(t).topOfTableau()))){
+                //numberOfMoves++;
+                table.at(t).getCards().erase(table.at(t).getCards().begin() + table.at(t).topOfTableau());
+                //cout<< table.at(t).topOfTableau()<< "\n";
                 //cout << "   moving tableau no. " << t << "\n";
-                for(int k = table.at(t).topOfTableau(); k < table.at(t).getCards().size(); k++){
-                    //cout << "   moving rest of tableau no. " << t << "\n";
-                    addToTableau(table.at(t).getCards().at(k));
-                    //remove cards from current tableau
-                    table.at(t).getCards().erase(table.at(t).getCards().end());
+                if( table.at(t).topOfTableau() != -50){
+                    int temp = table.at(t).topOfTableau();
+                     for(int k = table.at(t).topOfTableau(); k < table.at(t).getCards().size(); k++){
+                         //numberOfMoves++;
+                         //cout<< k << table.at(t).getCards().size()<<"\n";
+                         //table.at(t).getCards().at(k).printCard();
+                        //cout << "   moving rest of tableau no. " << t << "\n";
+                        addToTableau(table.at(t).getCards().at(temp));
+                        //remove cards from current tableau
+                        table.at(t).getCards().erase(table.at(t).getCards().begin()+ temp);
+                        }
                 }
+                //cout<<"MOVED A CARD AND NOW DELETED IT\n";
+                //printState();
                 //cout << "   moved tableau no. " << t << "\n";
                 refreshTableau();
             }
@@ -300,11 +320,11 @@ class solDriver{
             if(table.at(k).getCards().empty()){
                 
                 for(int p = 0; p < 7; p++){
-                    
+                    //cout<<"here\n";
                     if(k!=p){
                     if (!table.at(p).getCards().empty() && table.at(p).getCards().at(table.at(p).topOfTableau()).getCardValue() == 13){
-                        
-                        table.at(k).getCards().push_back(table.at(p).getCards().at(table.at(p).topOfTableau()));
+                        vector<card> temp = table.at(p).getCards();
+                        /*table.at(k).getCards().push_back(table.at(p).getCards().at(table.at(p).topOfTableau()));
                         table.at(p).getCards().erase(table.at(p).getCards().begin() + table.at(p).topOfTableau());
                         if(!table.at(p).getCards().empty() && table.at(p).getCards().at(table.at(p).topOfTableau()).getFaceUp()==true)
                         {
@@ -314,15 +334,46 @@ class solDriver{
 			                //cout<< table.at(p).getCards().at(where).getCardValue()<< "HERE\n";
 	                            table.at(k).getCards().push_back(table.at(p).getCards().at(where));
 	                            table.at(p).getCards().erase(table.at(p).getCards().begin()+where);
+                            }*/
+                        int spot = -2;
+                        for(int z = 0;z<temp.size();z++){
+                            card moveCard = temp.at(z);
+                            if(moveCard.isFaceUp()){
+                                table.at(k).getCards().push_back(moveCard);
+                                if(spot==-2){
+                                    spot = z;    
+                                    }
+                                //table.at(p).getCards().erase(table.at(p).getCards().begin()+spot);
+                                }
                             }
+                        for(int y=0;y<temp.size();y++){
+                            card moveCard = temp.at(y);
+                            if(moveCard.isFaceUp()){
+                                //cout<<spot<<"\n";
+                                //printState();
+                                table.at(p).getCards().erase(table.at(p).getCards().begin()+spot);
+                                }
+                            }
+                        }
+                        //table.at(p).getCards().erase(table.at(p).getCards().begin()+spot,table.at(p).getCards().begin()+table.at(p).getCards().size()-1);
                         }    
                     }
+                    refreshTableau();
                 }   
             }
         }
+        
+    void moveKings2(){
+        //IF THE TOP OF THE UP CARDS IS A KING
+        for(int p = 0;p < 7;p++){
+            if (!table.at(p).getCards().empty() && table.at(p).getCards().at(table.at(p).topOfTableau()).getCardValue() == 13){
+                //location of first up card (should be a king)
+                for(int i = 0;i<table.at(p).getCards().size();i++){
+                    
+                }
+            }
+        }
     }
-    //cout << "AFTER MOVING KINGS\n";
-}
     
     /**
      * printState() 
@@ -363,9 +414,10 @@ class solDriver{
         //cout<<"here\n";
         remaining = remaining + playerDeck.at(q).getSuit() + to_string(playerDeck.at(q).getCardValue()) + " ";
         //cout<< playerDeck.at(q).getSuit() << playerDeck.at(q).getCardValue()<<"\n";
-        
+        //cout<<"not the problem\n";
     }
     cout<< "PLAYER DECK PRINTED " << remaining<<"\n";
+    //verifySize();
     }
  
  /**
@@ -431,6 +483,35 @@ class solDriver{
     vector<card> getPlayerDeck(){
         
     }
+    
+    bool verifySize(){
+        vector<card> fullDeck;
+        for(int i = 0; i<7;i++){
+            vector<card> c = table.at(i).getCards();
+            for(int j = 0;j<c.size();j++){
+                fullDeck.push_back(c.at(j));
+            }
+        }
+        for(int r = 0;r<4;r++){
+            vector<card> b = foundation.at(r).getCards();
+            for(int s = 0;s<b.size();s++){
+                fullDeck.push_back(b.at(s));
+            }
+        }
+        for(int a = 0;a<playerDeck.size();a++){
+            fullDeck.push_back(playerDeck.at(a));
+        }
+        if(fullDeck.size()> 52){
+            cout<<"TOO MANY\n";
+            //printState();
+            return true;
+        }
+        else if(fullDeck.size()<52){
+            cout<<"TOO LITTLE\n";
+            return true;
+        }
+        return false;
+    }
 };
 
 int main(int argc, char *argv[]){
@@ -443,10 +524,11 @@ int main(int argc, char *argv[]){
     solDriver game;
     game.initialSetUp();
     
-    for(int i = 0; i < 5;i++){
-        
-    cout << "--game no . " << i << "started-- \n";
+    for(int i = 0; i < 9000;i++){
+        numberOfMoves = 0;
     
+    cout << "--game no . " << i << "started-- \n";
+    auto start = high_resolution_clock::now(); 
     game.newGame(i);
     /*
     cout << "deck number : " << i << "\n";
@@ -457,29 +539,65 @@ int main(int argc, char *argv[]){
     */
     game.setupTable();
     //game.printState();
-        
-    while(timesCycled <= 3 && !game.didIWin()){
+    int numLeft = 0;
+    while(timesCycled <= 3 && !game.didIWin() && numLeft<25){
         //cout << "active index: "<< deckIndex<< " :: "; playerDeck.at(deckIndex).printCard();
         //card that is drawn
         //game.printState();
-        card playerCard = playerDeck.at(deckIndex);
-        game.moveKings();
+        card playerCard(1, 'S', true);
+        if(playerDeck.size()!=0)
+            playerCard = playerDeck.at(deckIndex);
+        
+       // cout<<"moveKings\n";
+       game.moveKings();
+       // if(game.verifySize())break;
+        
+        //cout<<"tableauToTableau\n";
         game.tableauToTableau();
+        if(i==2283)
+            cout<<"ToT";
 
+         //if(game.verifySize())break;
+
+        //cout<<"refreshTableau\n";
         game.refreshTableau();
+        if(i==2283)
+                cout<<"RoT";
+         //if(game.verifySize())break;
+        
+        //cout<<"tableuToFoundation\n";
         while(game.tableuToFoundation()){}
+        if(i==2283)
+                cout<<"ToF";
+         //if(game.verifySize())break;
         
-        
-        if(game.addToFoundation(playerCard) || game.addToTableau(playerCard)){
+        //cout<<"addToFoundation/addToTableau\n";
+        if(playerDeck.size()!=0 && (game.addToFoundation(playerCard) || game.addToTableau(playerCard))){
+            //cout<<"MOVING CARD FROM DRAW\n";
+            //playerDeck.at(deckIndex).printCard();
+            //playerCard.printCard();
+            //game.printState();
+            //cout<<"AFTER MOVING\n";
+            //numberOfMoves++;
             playerDeck.erase(playerDeck.begin() + deckIndex);
+            //game.printState();
+            //cout<<"AFTER ERASING\n";
             deckIndex--;
         }else{
             deckIndex++;
         }
-        
+        if(i==2283)
+        {
+            cout<<"ATF ATT";
+            //game.printState();
+        }
+        if(game.verifySize()){
+            cout<<"THERE ARE NO LONGER 52 CARDS IN THE DECK\n";
+            break;
+        }
         
         //cout << "tableau >> tableau\n";
-        if(deckIndex >= playerDeck.size()){
+        if(playerDeck.size()!=0&&deckIndex != -1 && deckIndex >= playerDeck.size()){
             ++timesCycled;
             deckIndex = 0;
         }
@@ -487,19 +605,27 @@ int main(int argc, char *argv[]){
             deckIndex = 0;
         }
         
+        if(playerDeck.size()==0){
+            numLeft++;
+        }
+        
         //cout << "drew another card | " << playerDeck.size() << " cards remain and current index "<< deckIndex<<"\n";
     //game.printState();
     }
-    
+    while(game.tableuToFoundation()){}
     //Checks foundations for kings.
     //game.printState();
     if (game.didIWin()){
+        
         victories++;
+        auto stop = high_resolution_clock::now(); 
+        auto duration = duration_cast<microseconds>(stop - start); 
+        //cout<<"It took - "<< duration.count()<<" microseconds and "<< numberOfMoves << " moves.\n";
     }else{
         lose++;
     }
     cout << "### POST - GAME ###\n";
-    game.printState();
+    //game.printState();
     game.gameReset();
     timesCycled=0;
     }

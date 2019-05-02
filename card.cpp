@@ -40,7 +40,7 @@ using namespace std;
     Print of the string representation of a card
 */
         void card::printCard(){
-            //cout<<"Card: " << color<< "-" << suit << "-"<< cardValue<< "-"<< faceUp<<"\n";
+            cout<<"Card: " << color<< "-" << suit << "-"<< cardValue<< "-"<< faceUp<<"\n";
             
         }
 /**
