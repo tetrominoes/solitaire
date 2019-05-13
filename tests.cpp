@@ -38,14 +38,14 @@ TEST_CASE( "Deck has been shuffled" ) {
 
 
 //28 cards have been placed into the tableau piles
-/**TEST_CASE( "Tableau piles have been filled", "[classic]" ) {
+TEST_CASE( "Tableau piles have been filled", "[classic]" ) {
     game.newGame();
     game.setupTable();
     REQUIRE(game.gameCards.size() == 24);
 }
-*/
+
 //Each tableau pile has a different starting amount from 1-7
-/**TEST_CASE( "Tableau piles have been filled", "[classic]" ) {
+TEST_CASE( "Tableau piles have been filled", "[classic]" ) {
     game.newGame();
     game.setupTable();
     REQUIRE(game.table.at(0).getCards().size() == 1);
@@ -56,9 +56,9 @@ TEST_CASE( "Deck has been shuffled" ) {
     REQUIRE(game.table.at(5).getCards().size() == 6);
     REQUIRE(game.table.at(6).getCards().size() == 7);
 }
-*/
+
 //Top card of each tableau is flipped
-/**TEST_CASE( "Top card of each tableau is face up", "[classic]" ) {
+TEST_CASE( "Top card of each tableau is face up", "[classic]" ) {
     game.newGame();
     game.setupTable();
     REQUIRE(game.table.at(0).getCards().topCard().isFaceUp() == true);
@@ -69,10 +69,10 @@ TEST_CASE( "Deck has been shuffled" ) {
     REQUIRE(game.table.at(5).getCards().topCard().isFaceUp() == true);
     REQUIRE(game.table.at(6).getCards().topCard().isFaceUp() == true);
 }
-*/
+
 
 //4 Foundation piles have been made
-/**TEST_CASE( "Foundation Piles have been created", "[classic]" ) {
+TEST_CASE( "Foundation Piles have been created", "[classic]" ) {
     game.newGame();
     game.setupTable();
     REQUIRE(game.foundation.at(0) != NULL);
@@ -81,18 +81,18 @@ TEST_CASE( "Deck has been shuffled" ) {
     REQUIRE(game.foundation.at(3) != NULL);
   
 }
-*/
+
 //Foundation pile can only accept an ace when empty
-/**TEST_CASE( "Foundation Piles have been created", "[classic]" ) {
+TEST_CASE( "Foundation Piles have been created", "[classic]" ) {
     game.newGame();
     game.setupTable();
     Card ace = new Card(1,'S',TRUE);
     REQUIRE(game.foundation.at(0).canReceive(ace);
   
 }
-*/
+
 //Foundation can only accept same suit and ascending order
-/**TEST_CASE( "foundation accepts correct cards", "[classic]" ) {
+TEST_CASE( "foundation accepts correct cards", "[classic]" ) {
     game.newGame();
     game.setupTable();
     card ace (1,'S',TRUE);
@@ -136,7 +136,7 @@ TEST_CASE( "Deck has been shuffled" ) {
     game.foundation.at(0).push_back(ace);
   
 }
-*/
+
 //Card can be moved from tableau to foundation only when same suit/ascending order
 TEST_CASE( "tableau to foundation", "[classic]" ) {
     foundationPile foundation();

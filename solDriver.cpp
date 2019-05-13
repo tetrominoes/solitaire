@@ -60,7 +60,7 @@ class solDriver{
      * @param numShuff: the number of times to shuffle
  */     
     void newGame(int numShuff){
-    cout << "new game started\n";
+    //cout << "new game started\n";
     
     numShuff = (numShuff<1)? numShuff = 1: numShuff;
     playerDeck = gameCards.shuffle(numShuff);
@@ -113,7 +113,7 @@ class solDriver{
     }
     deckIndex = 0;
     //cout << "--table is set up--\n";
-    cout << "### PRE - GAME ###\n";
+    //cout << "### PRE - GAME ###\n";
     //printState();
 }  
 
@@ -456,7 +456,7 @@ class solDriver{
             //foundation.erase(foundation.begin() + 0);
             foundation.pop_back();
         }
-        cout << "game reset\n"; 
+        //cout << "game reset\n"; 
         deckIndex = 0;
         
     }
@@ -518,27 +518,21 @@ int main(int argc, char *argv[]){
     system("python banner.py");
     cout << "Solitaire initialized\n";
     cout << "beginning new game\n";
-    
+    cout << "progress (*";
     int victories = 0;
     int lose = 0;
     solDriver game;
     game.initialSetUp();
-    
-    for(int i = 0; i < 9000;i++){
+    int gameNo = 10000;
+    for(int i = 0; i < gameNo;i++){
         numberOfMoves = 0;
-    
-    cout << "--game no . " << i << "started-- \n";
+    if(i%500 == 0){
+        cout << "*";
+    }
+    cout << "game no . " << i << "\n";
     auto start = high_resolution_clock::now(); 
     game.newGame(i);
-    /*
-    cout << "deck number : " << i << "\n";
-    for(int o = 0; o < playerDeck.size(); o++){
-        cout << "card no. " << o+1 << " :: ";
-        playerDeck.at(o).printCard();
-    }
-    */
     game.setupTable();
-    //game.printState();
     int numLeft = 0;
     while(timesCycled <= 3 && !game.didIWin() && numLeft<25){
         //cout << "active index: "<< deckIndex<< " :: "; playerDeck.at(deckIndex).printCard();
@@ -549,26 +543,13 @@ int main(int argc, char *argv[]){
             playerCard = playerDeck.at(deckIndex);
         
        // cout<<"moveKings\n";
-       game.moveKings();
-       // if(game.verifySize())break;
-        
-        //cout<<"tableauToTableau\n";
+        game.moveKings();
         game.tableauToTableau();
-        if(i==2283)
-            cout<<"ToT";
-
-         //if(game.verifySize())break;
-
-        //cout<<"refreshTableau\n";
         game.refreshTableau();
-        if(i==2283)
-                cout<<"RoT";
          //if(game.verifySize())break;
         
         //cout<<"tableuToFoundation\n";
         while(game.tableuToFoundation()){}
-        if(i==2283)
-                cout<<"ToF";
          //if(game.verifySize())break;
         
         //cout<<"addToFoundation/addToTableau\n";
@@ -586,13 +567,8 @@ int main(int argc, char *argv[]){
         }else{
             deckIndex++;
         }
-        if(i==2283)
-        {
-            cout<<"ATF ATT";
-            //game.printState();
-        }
+        
         if(game.verifySize()){
-            cout<<"THERE ARE NO LONGER 52 CARDS IN THE DECK\n";
             break;
         }
         
@@ -608,13 +584,9 @@ int main(int argc, char *argv[]){
         if(playerDeck.size()==0){
             numLeft++;
         }
-        
-        //cout << "drew another card | " << playerDeck.size() << " cards remain and current index "<< deckIndex<<"\n";
-    //game.printState();
+
     }
     while(game.tableuToFoundation()){}
-    //Checks foundations for kings.
-    //game.printState();
     if (game.didIWin()){
         
         victories++;
@@ -624,8 +596,6 @@ int main(int argc, char *argv[]){
     }else{
         lose++;
     }
-    cout << "### POST - GAME ###\n";
-    //game.printState();
     game.gameReset();
     timesCycled=0;
     }
